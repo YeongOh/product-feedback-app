@@ -1,0 +1,130 @@
+@import '../index.css';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4.5rem;
+  background: url('../assets/images/mobile/background-header.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.link {
+  padding: 1rem var(--base-padding);
+  color: var(--color-primary-white);
+}
+
+.title {
+  font-size: var(--font-size-body2);
+  font-weight: 700;
+}
+
+.location {
+  font-size: var(--font-size-body3);
+  font-weight: 500;
+  opacity: 0.75;
+}
+
+.menuButton {
+  padding: var(--base-padding);
+  cursor: pointer;
+}
+
+.sidebarOverlay.active {
+  position: fixed;
+  width: 100vh;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sidebarMenu {
+  background-color: var(--color-secondary-light-grey);
+  position: fixed;
+  top: 4.5rem;
+  right: -17rem;
+  max-width: 17rem;
+  min-height: 100%;
+  padding: var(--base-padding);
+  transition: all 0.5s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebarMenu.active {
+  transform: translateX(-17rem);
+  transition: all 0.5s ease;
+}
+
+.categoryContainer {
+  background-color: var(--color-primary-white);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.category {
+  background-color: var(--color-secondary-grey);
+  color: var(--color-primary-blue);
+  font-size: var(--font-size-body3);
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: transparent;
+  border-radius: var(--base-border-radius);
+  /* margin-right: 0.5rem; */
+  margin-bottom: 0.4rem;
+}
+
+.category:hover {
+  background-color: var(--color-category-hover);
+  transition: all 0.25s ease-in-out;
+}
+
+.category:focus {
+  background-color: var(--color-primary-blue);
+  color: var(--color-primary-white);
+  transition: all 0.25s ease-in-out;
+}
+
+.roadmapContainer {
+  background-color: var(--color-primary-white);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.roadmapTitleSection {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.roadmapTitle {
+  font-size: var(--font-size-h3);
+  color: var(--color-secondary-dark-blue);
+  font-weight: 700;
+}
+
+.roadmapLink {
+  font-size: var(--font-size-body3);
+  color: var(--color-primary-blue);
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.roadmapList {
+  color: var(--color-secondary-dark-grey);
+  padding-left: 1.3rem;
+  list-style: none;
+}
+
+.roadmapList li {
+  margin-bottom: 0.5rem;
+}
