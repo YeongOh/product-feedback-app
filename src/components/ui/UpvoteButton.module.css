@@ -1,0 +1,22 @@
+.button {
+  background-color: var(--color-secondary-grey);
+  /* color: var(--color-primary-blue); */
+  color: var(--color-secondary-dark-blue);
+  font-size: var(--font-size-body3);
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border: transparent;
+  border-radius: var(--base-border-radius);
+  text-transform: capitalize;
+}
+
+.button:hover {
+  background-color: var(--color-category-hover);
+  transition: all 0.25s ease-in-out;
+}
+
+.button:focus {
+  background-color: var(--color-primary-blue);
+  color: var(--color-primary-white);
+  transition: all 0.25s ease-in-out;
+}

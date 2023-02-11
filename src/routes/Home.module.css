@@ -1,6 +1,4 @@
-@import '../index.css';
-
-.header {
+.banner {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,7 +72,6 @@
   padding: 0.5rem 1rem;
   border: transparent;
   border-radius: var(--base-border-radius);
-  /* margin-right: 0.5rem; */
   margin-bottom: 0.4rem;
 }
 
@@ -127,4 +124,56 @@
 
 .roadmapList li {
   margin-bottom: 0.5rem;
+}
+
+.sortContainer {
+  background-color: var(--color-secondary-dark-blue);
+  color: var(--color-secondary-grey);
+  padding: 0 var(--base-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-body3);
+  height: 3.5rem;
+}
+
+.sortOption {
+  font-weight: 700;
+}
+
+.feedbackBtn {
+  background-color: var(--color-primary-purple);
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  color: inherit;
+  border: none;
+  border-radius: var(--base-border-radius);
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+}
+
+.main {
+  padding: var(--base-padding);
+}
+
+.noFeedback {
+  background-color: var(--color-primary-white);
+  color: var(--color-secondary-dark-blue);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
+  text-align: center;
+  font-size: var(--font-size-body3);
+}
+
+.noFeedbackTitle {
+  font-size: var(--font-size-h2);
+}
+
+.feedback {
+  list-style: none;
+  background-color: var(--color-primary-white);
+  padding: var(--base-padding);
+  border-radius: var(--base-border-radius);
+  margin: 0.5rem 0;
 }

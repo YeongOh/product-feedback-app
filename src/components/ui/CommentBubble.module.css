@@ -1,0 +1,11 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.number {
+  font-size: var(--font-size-body3);
+  font-weight: 700;
+  color: var(--color-secondary-dark-blue);
+}
