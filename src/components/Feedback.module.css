@@ -1,0 +1,28 @@
+.feedback {
+  list-style: none;
+  background-color: var(--color-primary-white);
+  padding: var(--base-padding);
+  border-radius: var(--base-border-radius);
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-size: var(--font-size-body3);
+  font-weight: 700;
+  color: var(--color-secondary-dark-blue);
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  font-size: var(--font-size-body3);
+  color: var(--color-secondary-dark-grey);
+  margin-bottom: 0.5rem;
+}
+
+.footer {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

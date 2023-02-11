@@ -47,6 +47,7 @@ html {
 
 body {
   line-height: 1.4375;
+  background-color: var(--color-secondary-light-grey);
 }
 
 * {
