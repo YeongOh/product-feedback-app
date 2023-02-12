@@ -4,21 +4,27 @@ import close from '../assets/shared/mobile/icon-close.svg';
 import arrowDown from '../assets/shared/icon-arrow-down.svg';
 import plus from '../assets/shared/icon-plus.svg';
 import empty from '../assets/images/illustration-empty.svg';
-import { Link } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
-import data from '../data/feedbacks.json';
+// import data from '../data/feedbacks.json';
 import Feedback from '../components/Feedback';
 import CategoryButton from '../components/ui/CategoryButton';
+import { getFeedback, getFeedbacks } from '../api/firebase';
+
+export async function loader() {
+  const feedbacks = await getFeedbacks();
+  return { feedbacks };
+}
 
 export default function Home() {
-  const [feedbacks, setFeedbacks] = useState(data.feedbacks);
+  const { feedbacks } = useLoaderData();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const activeClassName = isMenuActive ? styles.active : '';
   const menuImgSrc = isMenuActive ? close : hamburger;
 
   useEffect(() => {
-    // console.log(feedbacks.length);
+    console.log(getFeedback(1));
   }, []);
 
   return (

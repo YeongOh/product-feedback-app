@@ -1,0 +1,13 @@
+.main {
+  padding: var(--base-padding);
+}
+
+.numberOfComments {
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  color: var(--color-secondary-dark-blue);
+}
+
+.comments {
+  list-style: none;
+}

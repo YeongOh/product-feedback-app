@@ -3,7 +3,7 @@ import { ReactComponent as ArrowUp } from '../../assets/shared/icon-arrow-up.svg
 
 export default function UpvoteButton({ children }) {
   return (
-    <button className={styles.button}>
+    <button className={styles.button} type='button'>
       <ArrowUp /> {children}
     </button>
   );
