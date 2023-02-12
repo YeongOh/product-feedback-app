@@ -171,7 +171,6 @@
 }
 
 .feedback {
-  list-style: none;
   background-color: var(--color-primary-white);
   padding: var(--base-padding);
   border-radius: var(--base-border-radius);

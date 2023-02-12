@@ -1,0 +1,26 @@
+.link {
+  color: var(--color-secondary-grey);
+  align-items: center;
+  display: flex;
+  gap: 2px;
+  border-radius: var(--base-border-radius);
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  font-size: var(--font-size-body3);
+}
+
+.link.blue {
+  background-color: var(--color-primary-blue);
+}
+
+.link.blue:hover {
+  background-color: var(--color-hover-blue);
+}
+
+.link.default {
+  background-color: var(--color-primary-purple);
+}
+
+.link.default:hover {
+  background-color: var(--color-hover-purple);
+}

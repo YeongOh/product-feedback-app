@@ -10,7 +10,6 @@ import FeedbackDetail, {
 import NotFound from './routes/NotFound';
 import Home, { loader as homeLoader } from './routes/Home';
 
-import AddFeedback from './routes/AddFeedback';
 import App from './app';
 // import { loader as feedbackLoader } from './routes/FeedbackDetail';
 
@@ -29,11 +28,6 @@ const router = createBrowserRouter([
         path: 'feedbacks/:feedbackId',
         element: <FeedbackDetail />,
         loader: feedbackLoader,
-      },
-      {
-        path: 'feedbacks/add',
-        element: <AddFeedback />,
-        // loader: feedbackLoader,
       },
     ],
   },

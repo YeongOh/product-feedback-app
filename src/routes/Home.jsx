@@ -1,16 +1,17 @@
 import styles from './Home.module.css';
+// icons
 import hamburger from '../assets/shared/mobile/icon-hamburger.svg';
 import close from '../assets/shared/mobile/icon-close.svg';
 import arrowDown from '../assets/shared/icon-arrow-down.svg';
 import plus from '../assets/shared/icon-plus.svg';
 import empty from '../assets/images/illustration-empty.svg';
-import { Link, useLoaderData } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-
-// import data from '../data/feedbacks.json';
+// components
 import Feedback from '../components/Feedback';
 import CategoryButton from '../components/ui/CategoryButton';
-import { getFeedback, getFeedbacks } from '../api/firebase';
+// hooks
+import { Link, useLoaderData } from 'react-router-dom';
+import { useState } from 'react';
+import { getFeedbacks } from '../api/firebase';
 
 export async function loader() {
   const feedbacks = await getFeedbacks();
@@ -23,9 +24,11 @@ export default function Home() {
   const activeClassName = isMenuActive ? styles.active : '';
   const menuImgSrc = isMenuActive ? close : hamburger;
 
-  useEffect(() => {
-    console.log(getFeedback(1));
-  }, []);
+  if (isMenuActive) {
+    document.body.classList.add('overflow-hidden');
+  } else {
+    document.body.classList.remove('overflow-hidden');
+  }
 
   return (
     <>
@@ -49,14 +52,28 @@ export default function Home() {
           onClick={() => setIsMenuActive(false)}
         ></div>
         <div className={`${styles.sidebarMenu} ${activeClassName}`}>
-          <div className={styles.categoryContainer}>
-            <CategoryButton>All</CategoryButton>
-            <CategoryButton>UI</CategoryButton>
-            <CategoryButton>UX</CategoryButton>
-            <CategoryButton>Enhancement</CategoryButton>
-            <CategoryButton>Bug</CategoryButton>
-            <CategoryButton>Feature</CategoryButton>
-          </div>
+          <nav>
+            <ul className={styles.categoryContainer}>
+              <li>
+                <CategoryButton>All</CategoryButton>
+              </li>
+              <li>
+                <CategoryButton>UI</CategoryButton>
+              </li>
+              <li>
+                <CategoryButton>UX</CategoryButton>
+              </li>
+              <li>
+                <CategoryButton>Enhancement</CategoryButton>
+              </li>
+              <li>
+                <CategoryButton>Bug</CategoryButton>
+              </li>
+              <li>
+                <CategoryButton>Feature</CategoryButton>
+              </li>
+            </ul>
+          </nav>
           <div className={styles.roadmapContainer}>
             <div className={styles.roadmapTitleSection}>
               <span className={styles.roadmapTitle}>Roadmap</span>

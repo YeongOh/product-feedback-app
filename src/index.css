@@ -23,6 +23,12 @@
   --color-secondary-dark-grey: hsl(224, 20%, 49%);
   --color-tertiary-orange: hsl(14, 83%, 74%);
   --color-tertiary-sky: hsl(204, 94%, 68%);
+  --color-tertiary-red: #d73737;
+
+  --color-hover-blue: #7c91f9;
+  --color-hover-purple: #c75af6;
+  --color-hover-dark-blue: #656ea3;
+  --color-hover-red: #e98888;
 
   --color-category-hover: #cfd7ff;
 
@@ -52,10 +58,20 @@ body {
   background-color: var(--color-secondary-light-grey);
 }
 
+body.overflow-hidden {
+  overflow: hidden;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
 }
 
 a {
