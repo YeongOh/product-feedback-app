@@ -4,19 +4,36 @@ import './normalize.css';
 import './index.css';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import FeedbackDetail from './routes/FeedbackDetail';
+import FeedbackDetail, {
+  loader as feedbackLoader,
+} from './routes/FeedbackDetail';
 import NotFound from './routes/NotFound';
-import Home from './routes/Home';
+import Home, { loader as homeLoader } from './routes/Home';
+
+import AddFeedback from './routes/AddFeedback';
+import App from './app';
+// import { loader as feedbackLoader } from './routes/FeedbackDetail';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home />,
+    element: <App />,
     errorElement: <NotFound />,
     children: [
       {
-        path: 'feedback/:feedbackId',
+        index: true, //
+        element: <Home />, //
+        loader: homeLoader,
+      },
+      {
+        path: 'feedbacks/:feedbackId',
         element: <FeedbackDetail />,
+        loader: feedbackLoader,
+      },
+      {
+        path: 'feedbacks/add',
+        element: <AddFeedback />,
+        // loader: feedbackLoader,
       },
     ],
   },

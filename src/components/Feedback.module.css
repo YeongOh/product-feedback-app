@@ -1,8 +1,5 @@
 .feedback {
   list-style: none;
-  background-color: var(--color-primary-white);
-  padding: var(--base-padding);
-  border-radius: var(--base-border-radius);
   margin-top: 0.5rem;
   margin-bottom: 1rem;
 }
@@ -17,7 +14,7 @@
 .description {
   font-size: var(--font-size-body3);
   color: var(--color-secondary-dark-grey);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .footer {
