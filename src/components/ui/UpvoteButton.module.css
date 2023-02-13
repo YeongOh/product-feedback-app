@@ -1,6 +1,8 @@
 .button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   background-color: var(--color-secondary-grey);
-  /* color: var(--color-primary-blue); */
   color: var(--color-secondary-dark-blue);
   font-size: var(--font-size-body3);
   font-weight: 700;

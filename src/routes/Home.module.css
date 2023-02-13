@@ -153,10 +153,6 @@
   font-weight: 700;
 }
 
-.main {
-  padding: var(--base-padding);
-}
-
 .noFeedback {
   background-color: var(--color-primary-white);
   color: var(--color-secondary-dark-blue);

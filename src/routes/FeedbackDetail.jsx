@@ -6,6 +6,7 @@ import styles from './FeedbackDetails.module.css';
 import Comment from '../components/Comment';
 import BackButton from '../components/ui/BackButton';
 import Button from '../components/ui/Button';
+import SectionTitle from '../components/ui/sectionTitle';
 
 export async function loader({ params }) {
   return getFeedback(params.feedbackId);
@@ -16,8 +17,8 @@ export default function FeedbackDetail() {
   const { comments } = feedback;
 
   return (
-    <main className={styles.main}>
-      <nav>
+    <>
+      <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li>
             <BackButton />
@@ -27,23 +28,27 @@ export default function FeedbackDetail() {
           </li>
         </ul>
       </nav>
-      <Feedback feedback={feedback} />
-      <Body>
-        {comments?.length > 0 ? (
-          <>
-            <div className={styles.numberOfComments}>
-              {comments.length} Comments
-            </div>
-            <ul className={styles.comments}>
-              {comments.map((comment) => (
-                <Comment key={comment.id} comment={comment} />
-              ))}
-            </ul>
-          </>
-        ) : (
-          <div className={styles.comments}>No Comments yet!</div>
-        )}
-      </Body>
-    </main>
+      <main className={styles.main}>
+        <Feedback feedback={feedback} />
+        <Body>
+          {comments?.length > 0 ? (
+            <>
+              <SectionTitle>{comments.length} Comments</SectionTitle>
+              <ul className={styles.comments}>
+                {comments.map((comment) => (
+                  <Comment key={comment.id} comment={comment} />
+                ))}
+              </ul>
+            </>
+          ) : (
+            <SectionTitle>No Comments yet!</SectionTitle>
+          )}
+        </Body>
+        <Body className={styles.addFeedback}>
+          <SectionTitle>Add Comment</SectionTitle>
+          <textarea></textarea>
+        </Body>
+      </main>
+    </>
   );
 }

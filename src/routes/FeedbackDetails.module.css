@@ -1,21 +1,13 @@
-.main {
-  padding: var(--base-padding);
+.nav {
+  margin: var(--base-margin);
 }
 
 .ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1.5rem;
 }
 
-.numberOfComments {
-  font-weight: 700;
-  font-size: var(--font-size-h3);
-  color: var(--color-secondary-dark-blue);
-}
-
-.replyingTo {
-  font-weight: 700;
-  color: var(--color-primary-purple);
+.addFeedback {
+  margin: var(--base-margin);
 }

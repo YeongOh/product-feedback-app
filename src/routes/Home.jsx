@@ -85,39 +85,41 @@ export default function Home() {
           </div>
         </div>
       </header>
-      <div className={styles.sortContainer}>
-        <div>
-          Sort by: <span className={styles.sortOption}>Most Upvotes</span>
-          {/* Least upvotes Most comments Least
+      <main>
+        <div className={styles.sortContainer}>
+          <div>
+            Sort by: <span className={styles.sortOption}>Most Upvotes</span>
+            {/* Least upvotes Most comments Least
         comments */}{' '}
-          <img src={arrowDown} alt='' />
-        </div>
-        <button className={styles.feedbackBtn}>
-          <img src={plus} alt='' />
-          Add Feedback
-        </button>
-      </div>
-      <main className={styles.main}>
-        {(feedbacks?.length === 0 || !feedbacks) && (
-          <div className={styles.noFeedback}>
-            <img src={empty} alt='' />
-            <h1 className={styles.noFeedbackTitle}>
-              There is no feedback yet.
-            </h1>
-            <p>
-              Got a suggestion? Found a bug that needs to be squashed? We love
-              hearing about new ideas to improve our app.
-            </p>
-            <button className={styles.feedbackBtn}>Add Feedback</button>
+            <img src={arrowDown} alt='' />
           </div>
-        )}
-        {feedbacks?.length >= 0 && (
-          <ul>
-            {feedbacks.map((feedback) => (
-              <Feedback key={feedback.id} feedback={feedback} />
-            ))}
-          </ul>
-        )}
+          <button className={styles.feedbackBtn}>
+            <img src={plus} alt='' />
+            Add Feedback
+          </button>
+        </div>
+        <div>
+          {(feedbacks?.length === 0 || !feedbacks) && (
+            <div className={styles.noFeedback}>
+              <img src={empty} alt='' />
+              <h1 className={styles.noFeedbackTitle}>
+                There is no feedback yet.
+              </h1>
+              <p>
+                Got a suggestion? Found a bug that needs to be squashed? We love
+                hearing about new ideas to improve our app.
+              </p>
+              <button className={styles.feedbackBtn}>Add Feedback</button>
+            </div>
+          )}
+          {feedbacks?.length >= 0 && (
+            <ul>
+              {feedbacks.map((feedback) => (
+                <Feedback key={feedback.id} feedback={feedback} />
+              ))}
+            </ul>
+          )}
+        </div>
       </main>
     </>
   );
