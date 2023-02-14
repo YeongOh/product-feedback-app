@@ -72,6 +72,7 @@
   top: 3.5rem;
   position: absolute;
   width: 100%;
+  z-index: 1;
 }
 
 .dropdownItem {
@@ -118,17 +119,36 @@
 .cancelButton {
   background-color: var(--color-primary-dark-blue);
   color: var(--color-secondary-grey);
+  border-radius: var(--base-border-radius);
+  font-size: var(--font-size-body3);
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  border-radius: var(--base-border-radius);
   padding: 0.8rem 1rem;
-  font-weight: 700;
-  font-size: var(--font-size-body3);
   width: 100%;
 }
 
 .cancelButton:hover {
   background-color: var(--color-hover-dark-blue);
+}
+
+.deleteButton {
+  background-color: var(--color-tertiary-red);
+  color: var(--color-secondary-grey);
+  font-size: var(--font-size-body3);
+  border-radius: var(--base-border-radius);
+  width: 100%;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+}
+
+.deleteButton:hover {
+  background-color: var(--color-hover-red);
 }

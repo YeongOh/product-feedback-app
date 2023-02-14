@@ -1,0 +1,20 @@
+.link {
+  font-size: var(--font-size-body3);
+  /* vertical-align: center;
+  margin: auto; */
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.span {
+  color: var(--color-secondary-dark-grey);
+  font-size: var(--font-size-body3);
+  font-weight: 700;
+}
+
+.span:hover {
+  color: var(--color-secondary-dark-blue);
+  text-decoration: underline;
+  transition: all 0.2s ease-in-out;
+}

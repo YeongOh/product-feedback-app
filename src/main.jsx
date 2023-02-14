@@ -7,11 +7,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import FeedbackDetail, {
   loader as feedbackLoader,
 } from './routes/FeedbackDetail';
+import AddFeedback from './routes/AddFeedback';
 import NotFound from './routes/NotFound';
 import Home, { loader as homeLoader } from './routes/Home';
 
-import AddFeedback from './routes/AddFeedback';
 import App from './app';
+import EditFeedback from './routes/EditFeedback';
 // import { loader as feedbackLoader } from './routes/FeedbackDetail';
 
 const router = createBrowserRouter([
@@ -21,8 +22,8 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       {
-        index: true, //
-        element: <Home />, //
+        index: true,
+        element: <Home />,
         loader: homeLoader,
       },
       {
@@ -31,9 +32,12 @@ const router = createBrowserRouter([
         loader: feedbackLoader,
       },
       {
+        path: 'feedbacks/:feedbackId/edit',
+        element: <EditFeedback />,
+      },
+      {
         path: 'feedbacks/add',
         element: <AddFeedback />,
-        // loader: feedbackLoader,
       },
     ],
   },

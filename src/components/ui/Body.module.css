@@ -4,4 +4,5 @@
   border-radius: var(--base-border-radius);
   font-size: var(--font-size-body3);
   color: var(--color-secondary-dark-grey);
+  margin: var(--base-margin);
 }

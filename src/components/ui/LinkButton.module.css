@@ -1,0 +1,35 @@
+.link {
+  color: var(--color-secondary-grey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: var(--base-border-radius);
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  font-size: var(--font-size-body3);
+}
+
+.link.blue {
+  background-color: var(--color-primary-blue);
+}
+
+.link.blue:hover {
+  background-color: var(--color-hover-blue);
+}
+
+.link.purple {
+  background-color: var(--color-primary-purple);
+}
+
+.link.purple:hover {
+  background-color: var(--color-hover-purple);
+}
+
+.link.darkBlue {
+  background-color: var(--color-primary-dark-blue);
+}
+
+.link.darkBlue:hover {
+  background-color: var(--color-hover-dark-blue);
+}

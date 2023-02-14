@@ -23,6 +23,14 @@
   --color-secondary-dark-grey: hsl(224, 20%, 49%);
   --color-tertiary-orange: hsl(14, 83%, 74%);
   --color-tertiary-sky: hsl(204, 94%, 68%);
+  --color-tertiary-red: #d73737;
+
+  --color-error: #d73737;
+
+  --color-hover-blue: #7c91f9;
+  --color-hover-purple: #c75af6;
+  --color-hover-dark-blue: #656ea3;
+  --color-hover-red: #e98888;
 
   --color-category-hover: #cfd7ff;
 
@@ -37,7 +45,17 @@
   --font-size-body3: 0.8125rem;
 
   --base-border-radius: 0.625rem;
+  --input-border-radius: 0.3125rem;
   --base-padding: 1.5rem;
+  --input-padding: 1rem;
+  --base-margin: 1.5rem;
+
+  --background-radial-gradient: radial-gradient(
+    farthest-corner at 2rem 0,
+    #e84d70,
+    #a337f6,
+    #28a7ed
+  );
 }
 
 html {
@@ -45,6 +63,9 @@ html {
 
   /* mobile 13px */
   /* font-size: 81.25%; */
+
+  /* to prevent scrollbar moving the layout when sidebar appears*/
+  overflow-x: hidden;
 }
 
 body {
@@ -52,10 +73,20 @@ body {
   background-color: var(--color-secondary-light-grey);
 }
 
+body.overflow-hidden {
+  overflow: hidden;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
 }
 
 a {
@@ -65,14 +96,49 @@ a {
 }
 
 h1 {
-  font-size: var(--font-size-h1);
-  line-height: 2.1875;
-  word-spacing: -0.33;
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  color: var(--color-secondary-dark-blue);
 }
 
-/* html.dark {
-  --color-bg-dark: 1a1c35;
-  --color-bg: #22243b;
-  --color-grey: #4e4e4e;
-  --color-text: #fdfffd;
-} */
+input {
+  color: var(--color-secondary-dark-blue);
+  background-color: var(--color-secondary-light-grey);
+  border-radius: var(--input-border-radius);
+  border: transparent;
+  resize: none;
+  height: 3rem;
+  width: 100%;
+  margin: 1rem 0;
+  padding: var(--input-padding);
+  margin-bottom: 0.5rem;
+}
+
+label {
+  font-weight: 700;
+  color: var(--color-secondary-dark-blue);
+}
+
+textarea {
+  background-color: var(--color-secondary-light-grey);
+  color: var(--color-secondary-dark-blue);
+  border-radius: var(--input-border-radius);
+  border: transparent;
+  resize: none;
+  width: 100%;
+  margin: 1rem 0;
+  padding: var(--input-padding);
+  line-height: 1.5;
+}
+
+textarea:focus {
+  outline: 1px var(--color-primary-blue) solid;
+}
+
+button {
+  border: transparent;
+}
+
+input:focus {
+  outline: 1px var(--color-primary-blue) solid;
+}

@@ -19,7 +19,7 @@ export default function Feedback({ feedback }) {
         </CategoryButton>
         <div className={styles.footer}>
           <UpvoteButton>{upvotes}</UpvoteButton>
-          <CommentBubble>{comments?.length}</CommentBubble>
+          {comments && <CommentBubble>{comments?.length}</CommentBubble>}
         </div>
       </Body>
     </li>

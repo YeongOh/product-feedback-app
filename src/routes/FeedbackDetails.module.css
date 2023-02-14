@@ -1,13 +1,35 @@
-.main {
-  padding: var(--base-padding);
+.nav {
+  margin: var(--base-margin);
 }
 
-.numberOfComments {
+.ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.addForm {
+  margin: var(--base-margin);
+}
+
+.commentLength {
   font-weight: 700;
   font-size: var(--font-size-h3);
   color: var(--color-secondary-dark-blue);
 }
 
-.comments {
-  list-style: none;
+.addComment {
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  color: var(--color-secondary-dark-blue);
+}
+
+.textarea {
+  height: 5rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
