@@ -1,7 +1,8 @@
 .link {
   color: var(--color-secondary-grey);
-  align-items: center;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 2px;
   border-radius: var(--base-border-radius);
   padding: 0.8rem 1rem;
@@ -17,10 +18,18 @@
   background-color: var(--color-hover-blue);
 }
 
-.link.default {
+.link.purple {
   background-color: var(--color-primary-purple);
 }
 
-.link.default:hover {
+.link.purple:hover {
   background-color: var(--color-hover-purple);
+}
+
+.link.darkBlue {
+  background-color: var(--color-primary-dark-blue);
+}
+
+.link.darkBlue:hover {
+  background-color: var(--color-hover-dark-blue);
 }

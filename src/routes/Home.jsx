@@ -3,11 +3,12 @@ import styles from './Home.module.css';
 import hamburger from '../assets/shared/mobile/icon-hamburger.svg';
 import close from '../assets/shared/mobile/icon-close.svg';
 import arrowDown from '../assets/shared/icon-arrow-down.svg';
-import plus from '../assets/shared/icon-plus.svg';
 import empty from '../assets/images/illustration-empty.svg';
+import { ReactComponent as Plus } from '../assets/shared/icon-plus.svg';
 // components
 import Feedback from '../components/Feedback';
 import CategoryButton from '../components/ui/CategoryButton';
+import LinkButton from '../components/ui/LinkButton';
 // hooks
 import { Link, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
@@ -93,10 +94,9 @@ export default function Home() {
         comments */}{' '}
             <img src={arrowDown} alt='' />
           </div>
-          <button className={styles.feedbackBtn}>
-            <img src={plus} alt='' />
-            Add Feedback
-          </button>
+          <LinkButton to='/feedbacks/add'>
+            <Plus></Plus> Add Feedback
+          </LinkButton>
         </div>
         <div>
           {(feedbacks?.length === 0 || !feedbacks) && (

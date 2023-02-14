@@ -8,6 +8,28 @@
   justify-content: space-between;
 }
 
-.addFeedback {
+.addForm {
   margin: var(--base-margin);
+}
+
+.commentLength {
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  color: var(--color-secondary-dark-blue);
+}
+
+.addComment {
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  color: var(--color-secondary-dark-blue);
+}
+
+.textarea {
+  height: 5rem;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
