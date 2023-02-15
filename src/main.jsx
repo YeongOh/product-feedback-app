@@ -13,6 +13,7 @@ import Home, { loader as homeLoader } from './routes/Home';
 
 import App from './app';
 import EditFeedback from './routes/EditFeedback';
+import ProtectedRoute from './routes/ProtectedRoute';
 // import { loader as feedbackLoader } from './routes/FeedbackDetail';
 
 const router = createBrowserRouter([
@@ -37,7 +38,12 @@ const router = createBrowserRouter([
       },
       {
         path: 'feedbacks/add',
-        element: <AddFeedback />,
+
+        element: (
+          <ProtectedRoute>
+            <AddFeedback />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

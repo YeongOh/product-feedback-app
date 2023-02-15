@@ -6,6 +6,8 @@ import { ReactComponent as PlusIcon } from '../assets/shared/icon-plus.svg';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
+import { useAuthContext } from '../context/AuthContext';
+import { addFeedback } from '../api/firebase';
 
 export default function AddFeedback() {
   const [title, setTitle] = useState('');
@@ -17,6 +19,8 @@ export default function AddFeedback() {
   const [openMenu, setOpenMenu] = useState(false);
   const navigate = useNavigate();
 
+  const { currentUser } = useAuthContext();
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -24,6 +28,8 @@ export default function AddFeedback() {
     category === 'Feature' && setCategoryError('Please select the feature');
     description.trim() === '' &&
       setDescriptionError(`Description can't be empty`);
+
+    addFeedback(title, category, description, currentUser);
   };
 
   return (

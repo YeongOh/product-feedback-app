@@ -10,7 +10,7 @@ export default function Feedback({ feedback }) {
   return (
     <li className={styles.feedback}>
       <Body>
-        <Link to={`feedbacks/${id}`} className={styles.title}>
+        <Link to={`/feedbacks/${id}`} className={styles.title}>
           {title}
         </Link>
         <p className={styles.description}>{description}</p>

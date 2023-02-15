@@ -7,16 +7,53 @@ import {
   orderByChild,
   equalTo,
 } from 'firebase/database';
+import {
+  getAuth,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   databaseURL: import.meta.env.VITE_FIREBASE_DB_URL,
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  //   authDomain: "PROJECT_ID.firebaseapp.com",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
 };
 
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+export function login() {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      return user;
+    })
+    .catch((error) => {
+      console.log([errorCode, errorMessage, email, credential]);
+    });
+}
+
+export function logout() {
+  signOut(auth)
+    .then(() => {})
+    .catch((error) => {});
+}
+
+export async function onUserStateChanged(callback) {
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      callback(user);
+    } else {
+      callback();
+      console.log('signed out');
+    }
+  });
+}
 
 export async function getFeedbacks() {
   return get(ref(database, 'feedbacks'))
@@ -50,3 +87,27 @@ export async function getFeedback(feedbackId) {
       console.error(error);
     });
 }
+
+/**
+ * Adds a feedback by sending it to firebase
+ *
+ * @param {string} title
+ * @param {string} category
+ * @param {string} description
+ * @param {string} user - currentUser from AuthContext
+ *
+ */
+export async function addFeedback(title, category, description, user) {}
+
+// /**
+//  * This is a function.
+//  *
+//  * @param {string} n - A string param
+//  * @param {string} [o] - A optional string param
+//  * @param {string} [d=DefaultValue] - A optional string param
+//  * @return {string} A good string
+//  *
+//  * @example
+//  *
+//  *     foo('hello')
+//  */

@@ -6,15 +6,17 @@ import { ReactComponent as PlusIcon } from '../assets/shared/icon-plus.svg';
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
+import { useAuthContext } from '../context/AuthContext';
 
 export default function EditFeedback() {
   const { state } = useLocation();
   const { feedback } = state;
+  const { currentUser } = useAuthContext();
 
-  const [title, setTitle] = useState(feedback.title);
-  const [category, setCategory] = useState(feedback.category);
-  const [status, setStatus] = useState(feedback.status);
-  const [description, setDescription] = useState(feedback.description);
+  const [title, setTitle] = useState(feedback?.title);
+  const [category, setCategory] = useState(feedback?.category);
+  const [status, setStatus] = useState(feedback?.status);
+  const [description, setDescription] = useState(feedback?.description);
   const [titleError, setTitleError] = useState('');
   const [categoryError, setCategoryError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');

@@ -33,3 +33,7 @@
 .link.darkBlue:hover {
   background-color: var(--color-hover-dark-blue);
 }
+
+.link:hover {
+  transition: all 0.15s ease-in-out;
+}
