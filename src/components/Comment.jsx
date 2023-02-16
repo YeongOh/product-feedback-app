@@ -8,7 +8,7 @@ export default function Comment({ comment }) {
         <figure className={styles.figure}>
           <img
             className={styles.img}
-            src={placeholder}
+            src={comment.user.image}
             alt={`${comment.user.name}'s profile`}
           />
           <figcaption>

@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { login, logout, onUserStateChanged } from '../api/firebase';
 
 const AuthContext = createContext();
@@ -9,9 +8,17 @@ export function AuthContextProvider({ children }) {
 
   useEffect(() => {
     onUserStateChanged((user) => {
-      setCurrentUser(user);
       if (user) {
-        console.log([user.displayName, user.email, user.uid]);
+        const {
+          displayName: name,
+          email: username,
+          photoURL: image,
+          uid,
+        } = user;
+        setCurrentUser({ name, username, image, uid });
+        console.log(currentUser);
+      } else {
+        setCurrentUser();
       }
     });
   }, []);

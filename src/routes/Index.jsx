@@ -1,4 +1,4 @@
-import styles from './Home.module.css';
+import styles from './Index.module.css';
 // icons
 import hamburger from '../assets/shared/mobile/icon-hamburger.svg';
 import close from '../assets/shared/mobile/icon-close.svg';
@@ -14,14 +14,13 @@ import { Link, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 import { getFeedbacks } from '../api/firebase';
 import { useAuthContext } from '../context/AuthContext';
-import { current } from 'immer';
 
 export async function loader() {
   const feedbacks = await getFeedbacks();
   return { feedbacks };
 }
 
-export default function Home() {
+export default function Index() {
   const { currentUser, login, logout } = useAuthContext();
   const { feedbacks } = useLoaderData();
   const [isMenuActive, setIsMenuActive] = useState(false);

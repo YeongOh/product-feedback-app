@@ -9,12 +9,11 @@ import FeedbackDetail, {
 } from './routes/FeedbackDetail';
 import AddFeedback from './routes/AddFeedback';
 import NotFound from './routes/NotFound';
-import Home, { loader as homeLoader } from './routes/Home';
 
 import App from './app';
 import EditFeedback from './routes/EditFeedback';
 import ProtectedRoute from './routes/ProtectedRoute';
-// import { loader as feedbackLoader } from './routes/FeedbackDetail';
+import Index, { loader as indexLoader } from './routes/Index';
 
 const router = createBrowserRouter([
   {
@@ -24,8 +23,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Home />,
-        loader: homeLoader,
+        element: <Index />,
+        loader: indexLoader,
       },
       {
         path: 'feedbacks/:feedbackId',
@@ -35,10 +34,10 @@ const router = createBrowserRouter([
       {
         path: 'feedbacks/:feedbackId/edit',
         element: <EditFeedback />,
+        loader: feedbackLoader,
       },
       {
         path: 'feedbacks/add',
-
         element: (
           <ProtectedRoute>
             <AddFeedback />

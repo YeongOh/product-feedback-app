@@ -115,6 +115,11 @@
   margin-bottom: 1rem;
 }
 
+.submitButton:hover {
+  background-color: var(--color-hover-purple);
+  transition: all 0.15s ease-in-out;
+}
+
 .cancelButton {
   background-color: var(--color-primary-dark-blue);
   color: var(--color-secondary-grey);

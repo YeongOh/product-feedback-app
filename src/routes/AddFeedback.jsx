@@ -4,7 +4,7 @@ import Body from '../components/ui/Body';
 import { ReactComponent as ArrowDown } from '../assets/shared/icon-arrow-down.svg';
 import { ReactComponent as PlusIcon } from '../assets/shared/icon-plus.svg';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
 import { useAuthContext } from '../context/AuthContext';
 import { addFeedback } from '../api/firebase';
@@ -21,15 +21,23 @@ export default function AddFeedback() {
 
   const { currentUser } = useAuthContext();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    title.trim() === '' && setTitleError(`Title can't be empty`);
-    category === 'Feature' && setCategoryError('Please select the feature');
-    description.trim() === '' &&
+    if (title.trim() === '') {
+      setTitleError(`Title can't be empty`);
+      return;
+    }
+    if (category === 'Feature') {
+      setCategoryError('Please select the feature');
+      return;
+    }
+    if (description.trim() === '') {
       setDescriptionError(`Description can't be empty`);
-
-    addFeedback(title, category, description, currentUser);
+      return;
+    }
+    const id = await addFeedback(title, category, description, currentUser);
+    return navigate(`/feedbacks/${id}`, { replace: true });
   };
 
   return (

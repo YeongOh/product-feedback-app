@@ -6,6 +6,11 @@ import {
   query,
   orderByChild,
   equalTo,
+  set,
+  update,
+  remove,
+  push,
+  child,
 } from 'firebase/database';
 import {
   getAuth,
@@ -14,6 +19,7 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
 } from 'firebase/auth';
+import { v4 as uuidv4 } from 'uuid';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -95,9 +101,82 @@ export async function getFeedback(feedbackId) {
  * @param {string} category
  * @param {string} description
  * @param {string} user - currentUser from AuthContext
- *
+ * @return {string} id - newly created feedback's id
  */
-export async function addFeedback(title, category, description, user) {}
+export async function addFeedback(title, category, description, user) {
+  const { uid } = user;
+  const numberOfFeedbacks = await get(ref(database, 'feedbacks'))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.size;
+      }
+      return 0;
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+
+  // project requirement for id
+  const id = numberOfFeedbacks + 1;
+
+  await set(ref(database, `feedbacks/${id}`), {
+    status: 'in-progress',
+    upvotes: 0,
+    title,
+    category,
+    description,
+    uid,
+    id,
+  });
+
+  return id;
+}
+
+/**
+ * Edit a feedback
+
+ * @param {number} id
+ * @param {string} title
+ * @param {string} category
+ * @param {string} description
+ * @param {string} status
+ * @return {string} id - edited feedback's id
+ */
+export async function editFeedback(id, title, category, description, status) {
+  await update(ref(database, `feedbacks/${id}`), {
+    status,
+    title,
+    category,
+    description,
+  });
+  return id;
+}
+
+/**
+ * Delete a feedback
+ * @param {number} id
+ */
+export async function deleteFeedback(id) {
+  remove(ref(database, `feedbacks/${id}`));
+}
+
+/**
+ * Add a comment
+ *
+ * @param {number} postId
+ * @param {object} currentUser
+ * @param {string} commentText
+ */
+export async function addComment(postId, currentUser, commentText) {
+  const { name, username, image, uid } = currentUser;
+  const user = { name, username, image, uid };
+  const id = uuidv4();
+  update(ref(database, `feedbacks/${postId}/comments/${id}`), {
+    content: commentText,
+    id,
+    user,
+  });
+}
 
 // /**
 //  * This is a function.
