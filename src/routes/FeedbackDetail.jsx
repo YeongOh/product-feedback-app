@@ -17,14 +17,21 @@ export default function FeedbackDetail() {
   const { currentUser } = useAuthContext();
   const uid = currentUser?.uid ?? '';
   const feedback = useLoaderData();
-  const { comments, uid: postUid } = feedback;
-  const [commentText, seCommentText] = useState('');
+  const { uid: postUid } = feedback;
+  const [commentText, setCommentText] = useState('');
+  const [comments, setComments] = useState(feedback.comments ?? []);
 
   const handleClick = async (event) => {
     event.preventDefault();
     if (!currentUser) return;
+    if (!commentText.trim()) {
+      console.log('empty');
+      return;
+    }
 
-    await addComment(feedback.id, currentUser, commentText);
+    const newComment = await addComment(feedback.id, currentUser, commentText);
+    setComments([...comments, newComment]);
+    setCommentText('');
     return;
   };
 
@@ -71,7 +78,7 @@ export default function FeedbackDetail() {
               className={styles.textarea}
               placeholder='Type your comment here'
               value={commentText}
-              onChange={(event) => seCommentText(event.target.value)}
+              onChange={(event) => setCommentText(event.target.value)}
               maxLength='250'
             ></textarea>
             <div className={styles.footer}>

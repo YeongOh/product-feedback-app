@@ -1,5 +1,4 @@
 import styles from './Comment.module.css';
-import placeholder from '../assets/user-images/image-elijah.jpg';
 
 export default function Comment({ comment }) {
   return (
@@ -10,6 +9,7 @@ export default function Comment({ comment }) {
             className={styles.img}
             src={comment.user.image}
             alt={`${comment.user.name}'s profile`}
+            referrerPolicy='no-referrer'
           />
           <figcaption>
             <div className={styles.name}>{comment.user.name}</div>
@@ -30,7 +30,7 @@ export default function Comment({ comment }) {
                   <figure className={styles.figure}>
                     <img
                       className={styles.img}
-                      src={placeholder}
+                      src={reply.user.image}
                       alt={`${reply.user.name}'s profile`}
                     />
                     <figcaption>

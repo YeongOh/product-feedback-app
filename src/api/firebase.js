@@ -65,7 +65,13 @@ export async function getFeedbacks() {
   return get(ref(database, 'feedbacks'))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        return Object.values(snapshot.val());
+        const feedbacks = Object.values(snapshot.val());
+        return feedbacks.map((feedback) => {
+          if (feedback.comments && !Array.isArray(feedback.comments)) {
+            return { ...feedback, comments: Object.values(feedback.comments) };
+          }
+          return feedback;
+        });
       }
       return [];
     })
@@ -75,17 +81,11 @@ export async function getFeedbacks() {
 }
 
 export async function getFeedback(feedbackId) {
-  const id = typeof feedbackId === 'string' ? Number(feedbackId) : feedbackId;
-  const feedbackRef = query(
-    ref(database, 'feedbacks'),
-    orderByChild('id'),
-    equalTo(id)
-  );
-  return get(feedbackRef)
+  return get(ref(database, `feedbacks/${feedbackId}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        const result = Object.values(snapshot.val());
-        return { ...result[0] };
+        const comments = Object.values(snapshot.val().comments ?? {});
+        return { ...snapshot.val(), comments };
       }
       throw new Error(`feedback id ${id} was not found`);
     })
@@ -105,28 +105,17 @@ export async function getFeedback(feedbackId) {
  */
 export async function addFeedback(title, category, description, user) {
   const { uid } = user;
-  const numberOfFeedbacks = await get(ref(database, 'feedbacks'))
-    .then((snapshot) => {
-      if (snapshot.exists()) {
-        return snapshot.size;
-      }
-      return 0;
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  const feedbackRef = ref(database, `feedbacks/`);
+  const newFeedbackRef = push(feedbackRef);
 
-  // project requirement for id
-  const id = numberOfFeedbacks + 1;
-
-  await set(ref(database, `feedbacks/${id}`), {
+  await set(newFeedbackRef, {
     status: 'in-progress',
+    id: newFeedbackRef.key,
     upvotes: 0,
     title,
     category,
     description,
     uid,
-    id,
   });
 
   return id;
@@ -143,7 +132,7 @@ export async function addFeedback(title, category, description, user) {
  * @return {string} id - edited feedback's id
  */
 export async function editFeedback(id, title, category, description, status) {
-  await update(ref(database, `feedbacks/${id}`), {
+  update(ref(database, `feedbacks/${id}`), {
     status,
     title,
     category,
@@ -168,14 +157,19 @@ export async function deleteFeedback(id) {
  * @param {string} commentText
  */
 export async function addComment(postId, currentUser, commentText) {
-  const { name, username, image, uid } = currentUser;
-  const user = { name, username, image, uid };
-  const id = uuidv4();
-  update(ref(database, `feedbacks/${postId}/comments/${id}`), {
+  // const { name, username, image, uid } = currentUser;
+
+  const commentRef = ref(database, `feedbacks/${postId}/comments/`);
+  const newCommentRef = push(commentRef);
+
+  const newComment = {
     content: commentText,
-    id,
-    user,
-  });
+    id: newCommentRef.key,
+    user: currentUser,
+  };
+  // console.log(newCommentRef);
+  await set(newCommentRef, newComment);
+  return newComment;
 }
 
 // /**
