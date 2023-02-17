@@ -7,10 +7,11 @@ import UpvoteButton from './ui/UpvoteButton';
 
 export default function Feedback({ feedback }) {
   const { id, title, description, category, upvotes, comments } = feedback;
+
   return (
     <li className={styles.feedback}>
       <Body>
-        <Link to={`feedbacks/${id}`} className={styles.title}>
+        <Link to={`/feedbacks/${id}`} className={styles.title}>
           {title}
         </Link>
         <p className={styles.description}>{description}</p>

@@ -4,17 +4,24 @@ import Body from '../components/ui/Body';
 import { ReactComponent as ArrowDown } from '../assets/shared/icon-arrow-down.svg';
 import { ReactComponent as PlusIcon } from '../assets/shared/icon-plus.svg';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
+import { useAuthContext } from '../context/AuthContext';
+import { deleteFeedback, editFeedback } from '../api/firebase';
 
 export default function EditFeedback() {
-  const { state } = useLocation();
-  const { feedback } = state;
+  const {
+    state: { feedback },
+  } = useLocation();
+  const {
+    currentUser: { uid },
+  } = useAuthContext();
+  const { uid: postUid, id } = feedback;
 
-  const [title, setTitle] = useState(feedback.title);
-  const [category, setCategory] = useState(feedback.category);
-  const [status, setStatus] = useState(feedback.status);
-  const [description, setDescription] = useState(feedback.description);
+  const [title, setTitle] = useState(feedback?.title);
+  const [category, setCategory] = useState(feedback?.category);
+  const [status, setStatus] = useState(feedback?.status);
+  const [description, setDescription] = useState(feedback?.description);
   const [titleError, setTitleError] = useState('');
   const [categoryError, setCategoryError] = useState('');
   const [descriptionError, setDescriptionError] = useState('');
@@ -22,13 +29,36 @@ export default function EditFeedback() {
   const [openStatusMenu, setOpenStatusMenu] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  if (postUid !== uid) {
+    console.log('unauthorized');
+    return navigate('-1', { replace: true });
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    title.trim() === '' && setTitleError(`Title can't be empty`);
-    category === 'Feature' && setCategoryError('Please select the feature');
-    description.trim() === '' &&
+    if (title.trim() === '') {
+      setTitleError(`Title can't be empty`);
+      return;
+    }
+    if (category === 'Feature') {
+      setCategoryError('Please select the feature');
+      return;
+    }
+    if (description.trim() === '') {
       setDescriptionError(`Description can't be empty`);
+      return;
+    }
+    await editFeedback(id, title, category, description, status);
+    return navigate(`/feedbacks/${id}`, { replace: true });
+  };
+
+  const handleClickDelete = async () => {
+    const result = confirm('Confirm to delete your post.');
+    if (result) {
+      deleteFeedback(id);
+      return navigate('/', { replace: true });
+    }
   };
 
   return (
@@ -163,19 +193,19 @@ export default function EditFeedback() {
               </p>
             )}
             <button className={styles.submitButton} type='submit'>
-              Add Feedback
+              Save Changes
             </button>
           </form>
           <button
             className={styles.cancelButton}
-            onClick={(event) => navigate(-1)}
+            onClick={() => navigate(-1, { replace: true })}
             type='button'
           >
             Cancel
           </button>
           <button
             className={styles.deleteButton}
-            onClick={(event) => navigate(-1)}
+            onClick={handleClickDelete}
             type='button'
           >
             Delete

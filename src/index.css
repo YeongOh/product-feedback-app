@@ -65,7 +65,7 @@ html {
   /* font-size: 81.25%; */
 
   /* to prevent scrollbar moving the layout when sidebar appears*/
-  overflow-x: hidden;
+  scrollbar-gutter: stable;
 }
 
 body {
@@ -74,7 +74,8 @@ body {
 }
 
 body.overflow-hidden {
-  overflow: hidden;
+  overflow-y: hidden;
+  height: 100%;
 }
 
 * {

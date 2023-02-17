@@ -1,4 +1,4 @@
-import styles from './Home.module.css';
+import styles from './Index.module.css';
 // icons
 import hamburger from '../assets/shared/mobile/icon-hamburger.svg';
 import close from '../assets/shared/mobile/icon-close.svg';
@@ -13,13 +13,15 @@ import LinkButton from '../components/ui/LinkButton';
 import { Link, useLoaderData } from 'react-router-dom';
 import { useState } from 'react';
 import { getFeedbacks } from '../api/firebase';
+import { useAuthContext } from '../context/AuthContext';
 
 export async function loader() {
   const feedbacks = await getFeedbacks();
   return { feedbacks };
 }
 
-export default function Home() {
+export default function Index() {
+  const { currentUser, login, logout } = useAuthContext();
   const { feedbacks } = useLoaderData();
   const [isMenuActive, setIsMenuActive] = useState(false);
   const activeClassName = isMenuActive ? styles.active : '';
@@ -30,6 +32,14 @@ export default function Home() {
   } else {
     document.body.classList.remove('overflow-hidden');
   }
+
+  const handleClickLogin = () => {
+    login();
+  };
+
+  const handleClickLogout = () => {
+    logout();
+  };
 
   return (
     <>
@@ -84,6 +94,11 @@ export default function Home() {
               <li>Planned 2 </li> <li>In-Progress 3</li> <li>Live 1</li>
             </ul>
           </div>
+          {currentUser && (
+            <button onClick={handleClickLogout} className={styles.logoutButton}>
+              Logout
+            </button>
+          )}
         </div>
       </header>
       <main>
@@ -94,9 +109,16 @@ export default function Home() {
         comments */}{' '}
             <img src={arrowDown} alt='' />
           </div>
-          <LinkButton to='/feedbacks/add'>
-            <Plus></Plus> Add Feedback
-          </LinkButton>
+          {currentUser && (
+            <LinkButton to='/feedbacks/add'>
+              <Plus></Plus> Add Feedback
+            </LinkButton>
+          )}
+          {!currentUser && (
+            <button onClick={handleClickLogin} className={styles.loginButton}>
+              Login
+            </button>
+          )}
         </div>
         <div>
           {(feedbacks?.length === 0 || !feedbacks) && (
