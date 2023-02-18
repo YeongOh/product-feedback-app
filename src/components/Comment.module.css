@@ -55,3 +55,29 @@
   color: var(--color-primary-purple);
   margin-right: 0.5rem;
 }
+
+.form {
+  /* display: flex;
+  flex-direction: column;
+  align-items: flex-start; */
+}
+
+.submitButton {
+  background-color: var(--color-primary-purple);
+  font-size: var(--font-size-body3);
+  color: var(--color-secondary-grey);
+  border-radius: var(--base-border-radius);
+  white-space: nowrap;
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.submitButton:hover {
+  background-color: var(--color-hover-purple);
+  transition: all 0.15s ease-in-out;
+}

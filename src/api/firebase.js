@@ -152,14 +152,14 @@ export async function deleteFeedback(id) {
 /**
  * Add a comment
  *
- * @param {number} postId
+ * @param {number} feedbackId
  * @param {object} currentUser
  * @param {string} commentText
  */
-export async function addComment(postId, currentUser, commentText) {
+export async function addComment(feedbackId, currentUser, commentText) {
   // const { name, username, image, uid } = currentUser;
 
-  const commentRef = ref(database, `feedbacks/${postId}/comments/`);
+  const commentRef = ref(database, `feedbacks/${feedbackId}/comments/`);
   const newCommentRef = push(commentRef);
 
   const newComment = {
@@ -170,6 +170,15 @@ export async function addComment(postId, currentUser, commentText) {
   // console.log(newCommentRef);
   await set(newCommentRef, newComment);
   return newComment;
+}
+
+export async function replyComment(
+  feedbackId,
+  commentId,
+  currentUser,
+  replyText
+) {
+  return;
 }
 
 // /**
