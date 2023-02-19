@@ -113,6 +113,7 @@ input {
   margin: 1rem 0;
   padding: var(--input-padding);
   margin-bottom: 0.5rem;
+  cursor: pointer;
 }
 
 label {
@@ -130,6 +131,7 @@ textarea {
   margin: 1rem 0;
   padding: var(--input-padding);
   line-height: 1.5;
+  cursor: pointer;
 }
 
 textarea:focus {
@@ -138,6 +140,7 @@ textarea:focus {
 
 button {
   border: transparent;
+  cursor: pointer;
 }
 
 input:focus {

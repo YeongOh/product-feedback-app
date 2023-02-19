@@ -63,6 +63,10 @@ export async function getFeedbacks() {
         const feedbacks = Object.values(snapshot.val());
         return feedbacks.map((feedback) => {
           if (feedback.comments && !Array.isArray(feedback.comments)) {
+            console.log({
+              ...feedback,
+              comments: Object.values(feedback.comments),
+            });
             return { ...feedback, comments: Object.values(feedback.comments) };
           }
           return feedback;

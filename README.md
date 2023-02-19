@@ -90,6 +90,23 @@ The project's requirement stated that if I go to 'feedbacks/10', it has to show 
 
 I figured this is an unncessary requirement and brings in more trouble than conveniences, so I did not implement this way except the first 10 feedbacks in the mock data.
 
+#### sort() on undefined values
+
+Sort by "most comments" or "least comments" will sort feedbacks and some feedbacks without comments will give undefined errors. Such error can be fixed by simply using optional chaning.
+
+```js
+[...feedbacks].sort((a, b) => b.comments?.length - a.comments?.length);
+```
+
+However, the problem arises when you try to sort feedbacks by undefined values in the middle. I solved this problem by simply checking if the comments exists and return -1 if it does not exist.
+
+```js
+[...feedbacks].sort((a, b) => {
+  if (!b.comments) return -1;
+  return b.comments?.length - a.comments?.length;
+});
+```
+
 ```html
 
 ```
