@@ -1,32 +1,41 @@
 import { useState } from 'react';
+import { replyComment } from '../api/firebase';
+import { useAuthContext } from '../context/AuthContext';
 import styles from './Comment.module.css';
+import Reply from './Reply';
+import UserProfile from './ui/UserProfile';
 
-export default function Comment({ comment }) {
+export default function Comment({ comment, feedbackId }) {
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState('');
+  const { currentUser } = useAuthContext();
 
-  const handleSubmit = (event) => {
+  const repliesArray = comment.replies ? Object.values(comment.replies) : [];
+  const [replies, setReplies] = useState(repliesArray);
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (replyText.trim() === '') return;
+    const newReply = await replyComment(
+      feedbackId,
+      comment,
+      currentUser,
+      replyText
+    );
+    setReplies([...replies, newReply]);
 
     setReplyText('');
+    setIsReplying(false);
+  };
+
+  const handleAddReply = (newReply) => {
+    setReplies([...replies, newReply]);
   };
 
   return (
-    <li key={comment.id} className={styles.comment}>
+    <li className={styles.comment}>
       <div className={styles.header}>
-        <figure className={styles.figure}>
-          <img
-            className={styles.img}
-            src={comment.user.image}
-            alt={`${comment.user.name}'s profile`}
-            referrerPolicy='no-referrer'
-          />
-          <figcaption>
-            <div className={styles.name}>{comment.user.name}</div>
-            <div>@{comment.user.username}</div>
-          </figcaption>
-        </figure>
+        <UserProfile user={comment.user} />
         <button
           className={styles.button}
           type='button'
@@ -50,34 +59,17 @@ export default function Comment({ comment }) {
           </button>
         </form>
       )}
-      {comment.replies && (
+      {replies && (
         <ul className={styles.repliesContainer}>
-          {comment.replies.map((reply) => {
-            return (
-              <li key={reply.content} className={styles.reply}>
-                <div className={styles.header}>
-                  <figure className={styles.figure}>
-                    <img
-                      className={styles.img}
-                      src={reply.user.image}
-                      alt={`${reply.user.name}'s profile`}
-                    />
-                    <figcaption>
-                      <div className={styles.name}>{reply.user.name}</div>
-                      <div>@{reply.user.username}</div>
-                    </figcaption>
-                  </figure>
-                  <button className={styles.button} type='button'>
-                    Reply
-                  </button>
-                </div>
-                <p className={styles.content}>
-                  <span className={styles.replyingTo}>@{reply.replyingTo}</span>
-                  {reply.content}
-                </p>
-              </li>
-            );
-          })}
+          {replies.map((reply) => (
+            <Reply
+              key={reply.id}
+              reply={reply}
+              feedbackId={feedbackId}
+              commentId={comment.id}
+              onAddReply={handleAddReply}
+            />
+          ))}
         </ul>
       )}
     </li>

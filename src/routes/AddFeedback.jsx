@@ -4,7 +4,7 @@ import Body from '../components/ui/Body';
 import { ReactComponent as ArrowDown } from '../assets/shared/icon-arrow-down.svg';
 import { ReactComponent as PlusIcon } from '../assets/shared/icon-plus.svg';
 import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
 import { useAuthContext } from '../context/AuthContext';
 import { addFeedback } from '../api/firebase';

@@ -1,16 +1,18 @@
 import { useLoaderData } from 'react-router-dom';
-import { addComment, getFeedback } from '../api/firebase';
-import Feedback from '../components/feedback';
-import Body from '../components/ui/Body';
+import { getFeedback } from '../api/firebase';
 import styles from './FeedbackDetails.module.css';
-import Comment from '../components/Comment';
 import BackButton from '../components/ui/BackButton';
 import LinkButton from '../components/ui/LinkButton';
 import { useAuthContext } from '../context/AuthContext';
-import { useState } from 'react';
+import CommentSection from '../components/CommentSection';
+import Feedback from '../components/feedback';
 
 export async function loader({ params }) {
-  return getFeedback(params.feedbackId);
+  const feedback = await getFeedback(params.feedbackId);
+  const commentsArray = feedback.comments
+    ? Object.values(feedback.comments)
+    : [];
+  return { ...feedback, comments: commentsArray };
 }
 
 export default function FeedbackDetail() {
@@ -18,24 +20,6 @@ export default function FeedbackDetail() {
   const uid = currentUser?.uid ?? '';
   const feedback = useLoaderData();
   const { uid: postUid } = feedback;
-  const [commentText, setCommentText] = useState('');
-  const [comments, setComments] = useState(feedback.comments ?? []);
-
-  const handleClick = async (event) => {
-    event.preventDefault();
-    if (!currentUser) return;
-    if (!commentText.trim()) {
-      console.log('empty');
-      return;
-    }
-
-    const newComment = await addComment(feedback.id, currentUser, commentText);
-    setComments([...comments, newComment]);
-    setCommentText('');
-    return;
-  };
-
-  console.log(comments);
 
   return (
     <>
@@ -53,46 +37,10 @@ export default function FeedbackDetail() {
           </li>
         </ul>
       </nav>
+
       <main className={styles.main}>
         <Feedback feedback={feedback} />
-        <Body>
-          {comments?.length > 0 ? (
-            <>
-              <div className={styles.commentLength}>
-                {comments.length} Comments
-              </div>
-              <ul className={styles.comments}>
-                {comments.map((comment) => (
-                  <Comment key={comment.id} comment={comment} />
-                ))}
-              </ul>
-            </>
-          ) : (
-            <div className={styles.commengLength}>No Comments yet!</div>
-          )}
-        </Body>
-        <Body className={styles.addForm}>
-          <div className={styles.addComment}>Add Comment</div>
-          <form>
-            <textarea
-              className={styles.textarea}
-              placeholder='Type your comment here'
-              value={commentText}
-              onChange={(event) => setCommentText(event.target.value)}
-              maxLength='250'
-            ></textarea>
-            <div className={styles.footer}>
-              <p>{250 - commentText.length} Characters left</p>
-              <button
-                className={styles.submitButton}
-                onClick={handleClick}
-                type='submit'
-              >
-                Post Comment
-              </button>
-            </div>
-          </form>
-        </Body>
+        <CommentSection feedback={feedback} />
       </main>
     </>
   );
