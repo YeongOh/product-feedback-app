@@ -1,12 +1,3 @@
-.comment {
-  margin-top: var(--base-padding);
-  border-bottom: 1px var(--color-border) solid;
-}
-
-.comment:last-child {
-  border-bottom: none;
-}
-
 .header {
   display: flex;
   justify-content: space-between;

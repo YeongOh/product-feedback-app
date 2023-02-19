@@ -9,14 +9,9 @@ export function AuthContextProvider({ children }) {
   useEffect(() => {
     onUserStateChanged((user) => {
       if (user) {
-        const {
-          displayName: name,
-          email: username,
-          photoURL: image,
-          uid,
-        } = user;
+        const { displayName: name, photoURL: image, email, uid } = user;
+        const username = email.substring(0, email.indexOf('@'));
         setCurrentUser({ name, username, image, uid });
-        console.log(currentUser);
       } else {
         setCurrentUser();
       }

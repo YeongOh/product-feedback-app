@@ -3,14 +3,10 @@ import {
   get,
   getDatabase,
   ref,
-  query,
-  orderByChild,
-  equalTo,
   set,
   update,
   remove,
   push,
-  child,
 } from 'firebase/database';
 import {
   getAuth,
@@ -19,7 +15,6 @@ import {
   onAuthStateChanged,
   GoogleAuthProvider,
 } from 'firebase/auth';
-import { v4 as uuidv4 } from 'uuid';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -84,10 +79,10 @@ export async function getFeedback(feedbackId) {
   return get(ref(database, `feedbacks/${feedbackId}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        const comments = Object.values(snapshot.val().comments ?? {});
-        return { ...snapshot.val(), comments };
+        // const comments = Object.values(snapshot.val().comments ?? {});
+        return snapshot.val();
       }
-      throw new Error(`feedback id ${id} was not found`);
+      throw new Error(`feedback ${id} was not found`);
     })
     .catch((error) => {
       console.error(error);
@@ -107,15 +102,16 @@ export async function addFeedback(title, category, description, user) {
   const { uid } = user;
   const feedbackRef = ref(database, `feedbacks/`);
   const newFeedbackRef = push(feedbackRef);
+  const id = newFeedbackRef.key;
 
   await set(newFeedbackRef, {
     status: 'in-progress',
-    id: newFeedbackRef.key,
     upvotes: 0,
     title,
     category,
     description,
     uid,
+    id,
   });
 
   return id;
@@ -152,14 +148,14 @@ export async function deleteFeedback(id) {
 /**
  * Add a comment
  *
- * @param {number} postId
+ * @param {number} feedbackId
  * @param {object} currentUser
  * @param {string} commentText
  */
-export async function addComment(postId, currentUser, commentText) {
+export async function addComment(feedbackId, currentUser, commentText) {
   // const { name, username, image, uid } = currentUser;
 
-  const commentRef = ref(database, `feedbacks/${postId}/comments/`);
+  const commentRef = ref(database, `feedbacks/${feedbackId}/comments/`);
   const newCommentRef = push(commentRef);
 
   const newComment = {
@@ -170,6 +166,68 @@ export async function addComment(postId, currentUser, commentText) {
   // console.log(newCommentRef);
   await set(newCommentRef, newComment);
   return newComment;
+}
+
+/**
+ * Reply to a comment
+ *
+ * @param {number} feedbackId
+ * @param {object} comment
+ * @param {object} currentUser
+ * @param {string} replyText
+ */
+export async function replyComment(
+  feedbackId,
+  comment,
+  currentUser,
+  replyText
+) {
+  const replyRef = ref(
+    database,
+    `feedbacks/${feedbackId}/comments/${comment.id}/replies`
+  );
+  const newReplyRef = push(replyRef);
+
+  const newReply = {
+    content: replyText,
+    replyingTo: comment.user.username,
+    id: newReplyRef.key,
+    user: currentUser,
+  };
+  await set(newReplyRef, newReply);
+  return newReply;
+}
+
+/**
+ * Reply to a reply
+ *
+ * @param {number} feedbackId
+ * @param {number} commentId
+ * @param {object} currentUser
+ * @param {string} replyText
+ * @param {string} toUsername - reply.user.username
+ */
+export async function replyReply(
+  feedbackId,
+  commentId,
+  currentUser,
+  replyText,
+  toUsername
+) {
+  const replyRef = ref(
+    database,
+    `feedbacks/${feedbackId}/comments/${commentId}/replies`
+  );
+  const newReplyRef = push(replyRef);
+
+  const newReply = {
+    content: replyText,
+    replyingTo: toUsername,
+    id: newReplyRef.key,
+    user: currentUser,
+  };
+  await set(newReplyRef, newReply);
+  return newReply;
 }
 
 // /**
