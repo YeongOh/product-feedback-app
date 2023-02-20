@@ -42,6 +42,7 @@ Users should be able to:
 ### What I learned
 
 As I build this project, I have faced more difficulties than I anticipated.
+The following sections discuss each problem by order of incidence.
 
 #### Making components too early
 

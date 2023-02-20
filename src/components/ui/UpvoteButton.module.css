@@ -17,7 +17,7 @@
   transition: all 0.25s ease-in-out;
 }
 
-.button:focus {
+.button.liked {
   background-color: var(--color-primary-blue);
   color: var(--color-primary-white);
   transition: all 0.25s ease-in-out;

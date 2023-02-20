@@ -6,7 +6,8 @@ import CommentBubble from './ui/CommentBubble';
 import UpvoteButton from './ui/UpvoteButton';
 
 export default function Feedback({ feedback }) {
-  const { id, title, description, category, upvotes, comments } = feedback;
+  const { id, title, description, category, upvotes, comments, likedUsers } =
+    feedback;
 
   return (
     <li className={styles.feedback}>
@@ -19,7 +20,11 @@ export default function Feedback({ feedback }) {
           {category}
         </CategoryButton>
         <div className={styles.footer}>
-          <UpvoteButton>{upvotes}</UpvoteButton>
+          <UpvoteButton
+            feedbackId={id}
+            likedUsers={likedUsers}
+            upvotesProp={upvotes}
+          />
           {comments && <CommentBubble>{comments?.length}</CommentBubble>}
         </div>
       </Body>

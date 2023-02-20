@@ -63,10 +63,6 @@ export async function getFeedbacks() {
         const feedbacks = Object.values(snapshot.val());
         return feedbacks.map((feedback) => {
           if (feedback.comments && !Array.isArray(feedback.comments)) {
-            console.log({
-              ...feedback,
-              comments: Object.values(feedback.comments),
-            });
             return { ...feedback, comments: Object.values(feedback.comments) };
           }
           return feedback;
@@ -232,6 +228,34 @@ export async function replyReply(
   };
   await set(newReplyRef, newReply);
   return newReply;
+}
+
+export async function likeFeedback(feedbackId, uid, numberOfUpvotes) {
+  try {
+    const feedbackRef = ref(database, `feedbacks/${feedbackId}`);
+    const updates = {};
+    updates['upvotes'] = numberOfUpvotes + 1;
+    updates[`likedUsers/${uid}`] = { status: true };
+    await update(feedbackRef, updates);
+  } catch (error) {
+    console.log(error);
+  }
+  return true;
+}
+
+export async function unlikeFeedback(feedbackId, uid, numberOfUpvotes) {
+  try {
+    const feedbackRef = ref(database, `feedbacks/${feedbackId}`);
+    const updates = {};
+    updates['upvotes'] = numberOfUpvotes - 1;
+    await Promise.all([
+      update(feedbackRef, updates),
+      remove(ref(database, `feedbacks/${feedbackId}/likedUsers/${uid}`)),
+    ]);
+  } catch (error) {
+    console.log(error);
+  }
+  return false;
 }
 
 // /**
