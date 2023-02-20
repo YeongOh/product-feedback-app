@@ -1,0 +1,42 @@
+.navbar {
+  background-color: var(--color-primary-dark-blue);
+  color: var(--color-primary-white);
+  font-size: var(--font-size-h3);
+  font-weight: 700;
+  padding: var(--base-padding);
+  height: 6.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filterBar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 3.75rem;
+  border-bottom: 1px var(--color-border) solid;
+}
+
+.filter {
+  background-color: transparent;
+  color: var(--color-primary-dark-blue);
+  font-size: var(--font-size-body3);
+  font-weight: 700;
+  height: 3.75rem;
+  width: 33.3%;
+  border-top: 4px transparent solid;
+  border-bottom: 4px transparent solid;
+}
+
+.filter.planned {
+  border-bottom: 4px var(--color-tertiary-orange) solid;
+}
+
+.filter.progress {
+  border-bottom: 4px var(--color-primary-purple) solid;
+}
+
+.filter.live {
+  border-bottom: 4px var(--color-tertiary-sky) solid;
+}

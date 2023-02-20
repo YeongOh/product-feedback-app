@@ -5,6 +5,7 @@ import { ReactComponent as Plus } from '../assets/shared/icon-plus.svg';
 import { ReactComponent as ArrowDown } from '../assets/shared/icon-arrow-down.svg';
 import { useState } from 'react';
 import DropdownItem from './ui/DropdownItem';
+import LoginButton from './ui/LoginButton';
 
 export default function Sortbar({ sort, onSortChange }) {
   const { currentUser, login } = useAuthContext();
@@ -42,11 +43,7 @@ export default function Sortbar({ sort, onSortChange }) {
           <Plus></Plus> Add Feedback
         </LinkButton>
       )}
-      {!currentUser && (
-        <button onClick={handleClickLogin} className={styles.loginButton}>
-          Login
-        </button>
-      )}
+      {!currentUser && <LoginButton />}
     </div>
   );
 }

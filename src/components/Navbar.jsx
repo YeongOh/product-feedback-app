@@ -6,6 +6,7 @@ import hamburger from '../assets/shared/mobile/icon-hamburger.svg';
 import close from '../assets/shared/mobile/icon-close.svg';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
+import LoginButton from './ui/LoginButton';
 
 export default function Navbar({ filter, onFilterChange }) {
   const { currentUser, logout } = useAuthContext();
@@ -45,12 +46,15 @@ export default function Navbar({ filter, onFilterChange }) {
         onClick={() => setIsSidebarActive(false)}
       ></div>
       <div className={`${styles.sidebarMenu} ${activeClassName}`}>
+        {!currentUser && <LoginButton />}
         <nav>
           <ul
             className={styles.categoryContainer}
             onClick={(event) => {
-              onFilterChange(event.target.name);
-              setIsSidebarActive(false);
+              if (event.target.tagName.toLowerCase() === 'button') {
+                onFilterChange(event.target.name);
+                setIsSidebarActive(false);
+              }
             }}
           >
             <li>
@@ -76,7 +80,9 @@ export default function Navbar({ filter, onFilterChange }) {
         <div className={styles.roadmapContainer}>
           <div className={styles.roadmapTitleSection}>
             <span className={styles.roadmapTitle}>Roadmap</span>
-            <a className={styles.roadmapLink}>View</a>
+            <Link to='/roadmap' className={styles.roadmapLink}>
+              View
+            </Link>
           </div>
           <ul className={styles.roadmapList}>
             <li>Planned 2 </li> <li>In-Progress 3</li> <li>Live 1</li>

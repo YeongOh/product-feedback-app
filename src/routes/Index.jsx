@@ -7,10 +7,12 @@ import Feedback from '../components/Feedback';
 // hooks
 import { useLoaderData } from 'react-router-dom';
 import { getFeedbacks } from '../api/firebase';
-import { useAuthContext } from '../context/AuthContext';
 import Navbar from '../components/Navbar';
 import Sortbar from '../components/Sortbar';
 import { useState } from 'react';
+import AddFeedbackButton from '../components/ui/AddFeedbackButton';
+import LoginButton from '../components/ui/LoginButton';
+import { useAuthContext } from '../context/AuthContext';
 
 export async function loader() {
   const feedbacks = await getFeedbacks();
@@ -21,6 +23,7 @@ export default function Index() {
   const { feedbacks } = useLoaderData();
   const [filter, setFilter] = useState('All');
   const [sort, setSort] = useState('Most Upvotes');
+  const { currentUser } = useAuthContext();
 
   const filteredFeedbacks = filterFeedbacks(feedbacks, filter);
   const sortedFeedbacks = sortFeedbacks(filteredFeedbacks, sort);
@@ -39,9 +42,11 @@ export default function Index() {
               </h1>
               <p>
                 Got a suggestion? Found a bug that needs to be squashed? We love
-                hearing about new ideas to improve our app.
+                hearing about new ideas to improve our app. Please add a
+                feedback after logging in!
               </p>
-              <button className={styles.feedbackBtn}>Add Feedback</button>
+              {!currentUser && <LoginButton />}
+              {currentUser && <AddFeedbackButton />}
             </div>
           )}
           {sortedFeedbacks?.length >= 0 && (

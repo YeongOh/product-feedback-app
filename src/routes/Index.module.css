@@ -3,8 +3,14 @@
   color: var(--color-secondary-dark-blue);
   border-radius: var(--base-border-radius);
   padding: var(--base-padding);
+  margin: var(--base-margin);
   text-align: center;
   font-size: var(--font-size-body3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
 }
 
 .noFeedbackTitle {

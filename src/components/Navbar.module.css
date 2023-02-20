@@ -63,7 +63,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
-  margin-bottom: 1.5rem;
+  margin: 1.5rem 0;
 }
 
 .category {
@@ -95,6 +95,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.6rem;
+  margin-bottom: 1.5rem;
 }
 
 .roadmapTitleSection {
@@ -139,10 +140,9 @@
   padding: 0.8rem 1rem;
   font-weight: 700;
   font-size: var(--font-size-body3);
-  margin: 1.5rem 0;
 }
 
-.loginButton:hover {
+.logoutButton:hover {
   background-color: var(--color-hover-red);
   transition: all 0.15s ease-in-out;
 }
