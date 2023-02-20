@@ -18,19 +18,20 @@ export async function loader() {
 }
 
 export default function Index() {
-  const { currentUser } = useAuthContext();
   const { feedbacks } = useLoaderData();
+  const [filter, setFilter] = useState('All');
   const [sort, setSort] = useState('Most Upvotes');
 
-  const sortedFeedbacks = sortFeedbacks(feedbacks, sort);
+  const filteredFeedbacks = filterFeedbacks(feedbacks, filter);
+  const sortedFeedbacks = sortFeedbacks(filteredFeedbacks, sort);
 
   return (
     <>
-      <Navbar />
+      <Navbar onFilterChange={setFilter} filter={filter} />
       <main>
         <Sortbar onSortChange={setSort} sort={sort} />
         <div>
-          {(feedbacks?.length === 0 || !feedbacks) && (
+          {(!feedbacks || sortedFeedbacks?.length === 0) && (
             <div className={styles.noFeedback}>
               <img src={empty} alt='' />
               <h1 className={styles.noFeedbackTitle}>
@@ -43,7 +44,7 @@ export default function Index() {
               <button className={styles.feedbackBtn}>Add Feedback</button>
             </div>
           )}
-          {feedbacks?.length >= 0 && (
+          {sortedFeedbacks?.length >= 0 && (
             <ul>
               {sortedFeedbacks.map((feedback) => (
                 <Feedback key={feedback.id} feedback={feedback} />
@@ -53,6 +54,14 @@ export default function Index() {
         </div>
       </main>
     </>
+  );
+}
+
+function filterFeedbacks(feedbacks, filter) {
+  if (filter === 'All') return feedbacks;
+
+  return feedbacks.filter(
+    (feedback) => feedback.category.toLowerCase() === filter.toLowerCase()
   );
 }
 

@@ -23,7 +23,7 @@ export default function Feedback({ feedback }) {
           <UpvoteButton
             feedbackId={id}
             likedUsers={likedUsers}
-            upvotesProp={upvotes}
+            upvotes={upvotes}
           />
           {comments && <CommentBubble>{comments?.length}</CommentBubble>}
         </div>

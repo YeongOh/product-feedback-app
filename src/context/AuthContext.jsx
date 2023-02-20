@@ -25,7 +25,6 @@ export function AuthContextProvider({ children }) {
       value={{
         currentUser,
         uid: currentUser && currentUser.uid,
-        isLoading,
         login,
         logout,
       }}

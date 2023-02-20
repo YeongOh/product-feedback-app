@@ -7,9 +7,10 @@ import close from '../assets/shared/mobile/icon-close.svg';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 
-export default function Navbar() {
+export default function Navbar({ filter, onFilterChange }) {
   const { currentUser, logout } = useAuthContext();
   const [isSidebarActive, setIsSidebarActive] = useState(false);
+
   const activeClassName = isSidebarActive ? styles.active : '';
   const menuImgSrc = isSidebarActive ? close : hamburger;
 
@@ -45,24 +46,30 @@ export default function Navbar() {
       ></div>
       <div className={`${styles.sidebarMenu} ${activeClassName}`}>
         <nav>
-          <ul className={styles.categoryContainer}>
+          <ul
+            className={styles.categoryContainer}
+            onClick={(event) => {
+              onFilterChange(event.target.name);
+              setIsSidebarActive(false);
+            }}
+          >
             <li>
-              <CategoryButton>All</CategoryButton>
+              <CategoryButton selected={filter}>All</CategoryButton>
             </li>
             <li>
-              <CategoryButton>UI</CategoryButton>
+              <CategoryButton selected={filter}>UI</CategoryButton>
             </li>
             <li>
-              <CategoryButton>UX</CategoryButton>
+              <CategoryButton selected={filter}>UX</CategoryButton>
             </li>
             <li>
-              <CategoryButton>Enhancement</CategoryButton>
+              <CategoryButton selected={filter}>Enhancement</CategoryButton>
             </li>
             <li>
-              <CategoryButton>Bug</CategoryButton>
+              <CategoryButton selected={filter}>Bug</CategoryButton>
             </li>
             <li>
-              <CategoryButton>Feature</CategoryButton>
+              <CategoryButton selected={filter}>Feature</CategoryButton>
             </li>
           </ul>
         </nav>
