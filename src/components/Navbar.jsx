@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 
 import CategoryButton from '../components/ui/CategoryButton';
 import styles from './Navbar.module.css';
@@ -7,8 +7,9 @@ import close from '../assets/shared/mobile/icon-close.svg';
 import { Link } from 'react-router-dom';
 import { useAuthContext } from '../context/AuthContext';
 import LoginButton from './ui/LoginButton';
+import StatusTag from './ui/StatusTag';
 
-export default function Navbar({ filter, onFilterChange }) {
+export default function Navbar({ filter, onFilterChange, feedbacks }) {
   const { currentUser, logout } = useAuthContext();
   const [isSidebarActive, setIsSidebarActive] = useState(false);
 
@@ -24,6 +25,19 @@ export default function Navbar({ filter, onFilterChange }) {
   const handleClickLogout = () => {
     logout();
   };
+
+  const plannedLength = useMemo(
+    () => filterFeedbacks(feedbacks, 'planned').length,
+    [feedbacks]
+  );
+  const inProgressLength = useMemo(
+    () => filterFeedbacks(feedbacks, 'in-progress').length,
+    [feedbacks]
+  );
+  const liveLength = useMemo(
+    () => filterFeedbacks(feedbacks, 'live').length,
+    [feedbacks]
+  );
 
   return (
     <header>
@@ -85,7 +99,18 @@ export default function Navbar({ filter, onFilterChange }) {
             </Link>
           </div>
           <ul className={styles.roadmapList}>
-            <li>Planned 2 </li> <li>In-Progress 3</li> <li>Live 1</li>
+            <li>
+              <StatusTag status='planned' />
+              <div>{plannedLength}</div>
+            </li>
+            <li>
+              <StatusTag status='in-progress' />
+              <div>{inProgressLength}</div>
+            </li>
+            <li>
+              <StatusTag status='live' />
+              <div>{liveLength}</div>
+            </li>
           </ul>
         </div>
         {currentUser && (
@@ -95,5 +120,11 @@ export default function Navbar({ filter, onFilterChange }) {
         )}
       </div>
     </header>
+  );
+}
+
+function filterFeedbacks(feedbacks, filter) {
+  return feedbacks.filter(
+    (feedback) => feedback.status.toLowerCase() === filter.toLowerCase()
   );
 }

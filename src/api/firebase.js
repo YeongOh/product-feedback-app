@@ -51,7 +51,6 @@ export async function onUserStateChanged(callback) {
       callback(user);
     } else {
       callback();
-      console.log('signed out');
     }
   });
 }

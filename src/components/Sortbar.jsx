@@ -8,12 +8,8 @@ import DropdownItem from './ui/DropdownItem';
 import LoginButton from './ui/LoginButton';
 
 export default function Sortbar({ sort, onSortChange }) {
-  const { currentUser, login } = useAuthContext();
+  const { currentUser } = useAuthContext();
   const [openMenu, setOpenMenu] = useState(false);
-
-  const handleClickLogin = () => {
-    login();
-  };
 
   return (
     <div className={styles.sortContainer}>
@@ -22,7 +18,7 @@ export default function Sortbar({ sort, onSortChange }) {
         onClick={() => setOpenMenu((prev) => !prev)}
       >
         Sort by: <span className={styles.sortOption}>{sort}</span>
-        <ArrowDown />
+        <ArrowDown className={styles.arrowDown} />
       </div>
       {openMenu && (
         <div

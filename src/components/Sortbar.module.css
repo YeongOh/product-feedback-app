@@ -15,7 +15,8 @@
 }
 
 .arrowDown {
-  color: var(--color-secondary-grey);
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7477%)
+    hue-rotate(263deg) brightness(112%) contrast(105%);
 }
 
 .sortOption {

@@ -1,0 +1,24 @@
+.div {
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+}
+
+.span {
+  font-size: 0.6rem;
+}
+
+.span.planned {
+  color: var(--color-tertiary-orange);
+}
+
+.span.inProgress {
+  color: var(--color-primary-purple);
+}
+
+.span.live {
+  color: var(--color-tertiary-sky);
+}

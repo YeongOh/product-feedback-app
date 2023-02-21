@@ -30,7 +30,11 @@ export default function Index() {
 
   return (
     <>
-      <Navbar onFilterChange={setFilter} filter={filter} />
+      <Navbar
+        onFilterChange={setFilter}
+        filter={filter}
+        feedbacks={feedbacks}
+      />
       <main>
         <Sortbar onSortChange={setSort} sort={sort} />
         <div>

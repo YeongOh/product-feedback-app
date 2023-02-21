@@ -10,6 +10,10 @@
   align-items: center;
 }
 
+.title {
+  margin-top: 0.3rem;
+}
+
 .filterBar {
   display: flex;
   justify-content: space-around;
@@ -39,4 +43,20 @@
 
 .filter.live {
   border-bottom: 4px var(--color-tertiary-sky) solid;
+}
+
+.desc {
+  margin: var(--base-margin);
+}
+
+.status {
+  font-weight: 700;
+  font-size: var(--font-size-h3);
+  color: var(--color-primary-dark-blue);
+  margin-bottom: 0.5rem;
+}
+
+.p {
+  font-size: var(--font-size-body3);
+  color: var(--color-secondary-dark-grey);
 }

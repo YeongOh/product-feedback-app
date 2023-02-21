@@ -1,7 +1,5 @@
 .link {
   font-size: var(--font-size-body3);
-  /* vertical-align: center;
-  margin: auto; */
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -17,4 +15,18 @@
   color: var(--color-secondary-dark-blue);
   text-decoration: underline;
   transition: all 0.2s ease-in-out;
+}
+
+.span.white {
+  color: var(--color-primary-white);
+}
+
+.span.white:hover {
+  color: var(--color-secondary-grey);
+  transition: all 0.2s ease-in-out;
+}
+
+.whiteArrowLeft {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7477%)
+    hue-rotate(263deg) brightness(112%) contrast(105%);
 }

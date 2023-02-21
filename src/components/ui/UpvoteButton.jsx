@@ -33,7 +33,7 @@ export default function UpvoteButton({
       type='button'
       onClick={handleClick}
     >
-      <ArrowUp /> {upvotes}
+      <ArrowUp className={`${styles.arrowUp} ${likedClassName}`} /> {upvotes}
     </button>
   );
 }

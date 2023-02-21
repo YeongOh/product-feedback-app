@@ -1,9 +1,8 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Feedback from '../components/feedback';
 import AddFeedbackButton from '../components/ui/AddFeedbackButton';
 import BackButton from '../components/ui/BackButton';
-import LinkButton from '../components/ui/LinkButton';
 import LoginButton from '../components/ui/LoginButton';
 import { useAuthContext } from '../context/AuthContext';
 import styles from './Roadmap.module.css';
@@ -16,16 +15,25 @@ export default function Roadmap() {
 
   const filteredFeedbacks = filterFeedbacks(feedbacks, filter);
 
-  const plannedLength = filterFeedbacks(feedbacks, 'planned').length;
-  const inProgressLength = filterFeedbacks(feedbacks, 'in-progress').length;
-  const liveLength = filterFeedbacks(feedbacks, 'live').length;
+  const plannedLength = useMemo(
+    () => filterFeedbacks(feedbacks, 'planned').length,
+    [feedbacks]
+  );
+  const inProgressLength = useMemo(
+    () => filterFeedbacks(feedbacks, 'in-progress').length,
+    [feedbacks]
+  );
+  const liveLength = useMemo(
+    () => filterFeedbacks(feedbacks, 'live').length,
+    [feedbacks]
+  );
 
   return (
     <>
       <nav className={styles.navbar}>
         <div>
-          <BackButton />
-          <div>Roadmap</div>
+          <BackButton colorWhite />
+          <div className={styles.title}>Roadmap</div>
         </div>
         {currentUser && <AddFeedbackButton />}
         {!currentUser && <LoginButton />}
@@ -63,22 +71,28 @@ export default function Roadmap() {
         </div>
         {filter === 'planned' && (
           <section className={styles.section}>
-            <div>Planned ({plannedLength})</div>
-            <p>Ideas prioritized for research</p>
+            <div className={styles.desc}>
+              <div className={styles.status}>Planned ({plannedLength})</div>
+              <p className={styles.p}>Ideas prioritized for research</p>
+            </div>
             <ul>
               {filteredFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} />
+                <Feedback key={feedback.id} feedback={feedback} isInRoadmap />
               ))}
             </ul>
           </section>
         )}
         {filter === 'in-progress' && (
           <section className={styles.section}>
-            <div>In-Progress ({inProgressLength})</div>
-            <p>Currently being developed</p>
+            <div className={styles.desc}>
+              <div className={styles.status}>
+                In-Progress ({inProgressLength})
+              </div>
+              <p className={styles.p}>Currently being developed</p>
+            </div>
             <ul>
               {filteredFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} />
+                <Feedback key={feedback.id} feedback={feedback} isInRoadmap />
               ))}
             </ul>
           </section>
@@ -86,11 +100,13 @@ export default function Roadmap() {
 
         {filter === 'live' && (
           <section className={styles.section}>
-            <div>live ({inProgressLength})</div>
-            <p>Released features</p>
+            <div className={styles.desc}>
+              <div className={styles.status}>live ({inProgressLength})</div>
+              <p className={styles.p}>Released features</p>
+            </div>
             <ul>
               {filteredFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} />
+                <Feedback key={feedback.id} feedback={feedback} isInRoadmap />
               ))}
             </ul>
           </section>
