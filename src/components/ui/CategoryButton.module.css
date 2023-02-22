@@ -1,4 +1,4 @@
-.link {
+.button {
   background-color: var(--color-secondary-grey);
   color: var(--color-primary-blue);
   font-size: var(--font-size-body3);
@@ -11,12 +11,12 @@
   display: inline;
 }
 
-.link:hover {
+.button:hover {
   background-color: var(--color-category-hover);
   transition: all 0.25s ease-in-out;
 }
 
-.link:focus {
+.button.selected {
   background-color: var(--color-primary-blue);
   color: var(--color-primary-white);
   transition: all 0.25s ease-in-out;

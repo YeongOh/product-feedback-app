@@ -51,7 +51,6 @@ export async function onUserStateChanged(callback) {
       callback(user);
     } else {
       callback();
-      console.log('signed out');
     }
   });
 }
@@ -228,6 +227,34 @@ export async function replyReply(
   };
   await set(newReplyRef, newReply);
   return newReply;
+}
+
+export async function likeFeedback(feedbackId, uid, numberOfUpvotes) {
+  try {
+    const feedbackRef = ref(database, `feedbacks/${feedbackId}`);
+    const updates = {};
+    updates['upvotes'] = numberOfUpvotes + 1;
+    updates[`likedUsers/${uid}`] = { status: true };
+    await update(feedbackRef, updates);
+  } catch (error) {
+    console.log(error);
+  }
+  return true;
+}
+
+export async function unlikeFeedback(feedbackId, uid, numberOfUpvotes) {
+  try {
+    const feedbackRef = ref(database, `feedbacks/${feedbackId}`);
+    const updates = {};
+    updates['upvotes'] = numberOfUpvotes - 1;
+    await Promise.all([
+      update(feedbackRef, updates),
+      remove(ref(database, `feedbacks/${feedbackId}/likedUsers/${uid}`)),
+    ]);
+  } catch (error) {
+    console.log(error);
+  }
+  return false;
 }
 
 // /**

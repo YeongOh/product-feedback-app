@@ -17,8 +17,13 @@
   transition: all 0.25s ease-in-out;
 }
 
-.button:focus {
+.button.liked {
   background-color: var(--color-primary-blue);
   color: var(--color-primary-white);
   transition: all 0.25s ease-in-out;
+}
+
+.arrowUp.liked {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7477%)
+    hue-rotate(263deg) brightness(112%) contrast(105%);
 }

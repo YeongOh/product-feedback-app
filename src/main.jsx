@@ -14,6 +14,7 @@ import App from './app';
 import EditFeedback from './routes/EditFeedback';
 import ProtectedRoute from './routes/ProtectedRoute';
 import Index, { loader as indexLoader } from './routes/Index';
+import Roadmap from './routes/Roadmap';
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,12 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Index />,
+        loader: indexLoader,
+      },
+
+      {
+        path: 'roadmap',
+        element: <Roadmap />,
         loader: indexLoader,
       },
       {

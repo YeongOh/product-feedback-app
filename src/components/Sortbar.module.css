@@ -1,0 +1,46 @@
+.sortContainer {
+  background-color: var(--color-secondary-dark-blue);
+  color: var(--color-secondary-grey);
+  padding: 0 var(--base-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--font-size-body3);
+  height: 3.5rem;
+  position: relative;
+}
+
+.sortOptionButton {
+  cursor: pointer;
+}
+
+.arrowDown {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7477%)
+    hue-rotate(263deg) brightness(112%) contrast(105%);
+}
+
+.sortOption {
+  font-weight: 700;
+  margin-right: 0.2rem;
+}
+
+.dropdownMenu {
+  border-radius: var(--base-border-radius);
+  overflow: hidden;
+  box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+  position: absolute;
+  top: 3.5rem;
+  min-width: 12rem;
+}
+
+.feedbackBtn {
+  background-color: var(--color-primary-purple);
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  color: inherit;
+  border: none;
+  border-radius: var(--base-border-radius);
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+}

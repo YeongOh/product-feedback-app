@@ -3,6 +3,31 @@
   margin-bottom: 1rem;
 }
 
+.bodyContainer {
+  border-radius: var(--input-border-radius);
+  margin: var(--base-margin);
+  overflow: hidden;
+}
+
+.body {
+  background-color: var(--color-primary-white);
+  padding: var(--base-padding);
+  font-size: var(--font-size-body3);
+  color: var(--color-secondary-dark-grey);
+}
+
+.body.planned {
+  border-top: 0.4rem var(--color-tertiary-orange) solid;
+}
+
+.body.inProgress {
+  border-top: 0.4rem var(--color-primary-purple) solid;
+}
+
+.body.live {
+  border-top: 0.4rem var(--color-tertiary-sky) solid;
+}
+
 .title {
   font-size: var(--font-size-body3);
   font-weight: 700;

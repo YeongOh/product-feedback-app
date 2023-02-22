@@ -1,10 +1,15 @@
-import { Link } from 'react-router-dom';
 import styles from './CategoryButton.module.css';
 
-export default function CategoryButton({ children }) {
+export default function CategoryButton({ children, selected }) {
+  const isSelected = selected === children ? styles.selected : '';
+
   return (
-    <Link className={styles.link} type='button'>
+    <button
+      className={`${styles.button} ${isSelected}`}
+      type='button'
+      name={children}
+    >
       {children}
-    </Link>
+    </button>
   );
 }

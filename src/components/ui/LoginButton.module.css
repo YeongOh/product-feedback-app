@@ -1,0 +1,25 @@
+.button {
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-dark-blue);
+  border: 1px var(--color-primary-blue) solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: var(--base-border-radius);
+  padding: 0.5rem 1rem;
+  font-weight: 700;
+  font-size: var(--font-size-body3);
+}
+
+.button:hover {
+  background-color: var(--color-hover-blue);
+  color: var(--color-primary-white);
+  transition: all 0.15s ease-in-out;
+}
+
+.button:focus {
+  background-color: var(--color-primary-blue);
+  color: var(--color-primary-white);
+  transition: all 0.15s ease-in-out;
+}
