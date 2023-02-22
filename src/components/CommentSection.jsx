@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useAuthContext } from '../context/AuthContext';
-import Feedback from '../components/feedback';
 import Body from '../components/ui/Body';
 import Comment from '../components/Comment';
 import { addComment } from '../api/firebase';
@@ -9,9 +8,6 @@ import styles from './CommentSection.module.css';
 export default function CommentSection({ feedback }) {
   const { currentUser } = useAuthContext();
   const [commentText, setCommentText] = useState('');
-  //   const commentsArray = feedback.comments
-  //     ? Object.values(feedback.comments)
-  //     : [];
   const [comments, setComments] = useState(feedback.comments);
 
   const handleClick = async (event) => {

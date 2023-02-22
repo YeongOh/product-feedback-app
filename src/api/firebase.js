@@ -152,8 +152,6 @@ export async function deleteFeedback(id) {
  * @param {string} commentText
  */
 export async function addComment(feedbackId, currentUser, commentText) {
-  // const { name, username, image, uid } = currentUser;
-
   const commentRef = ref(database, `feedbacks/${feedbackId}/comments/`);
   const newCommentRef = push(commentRef);
 

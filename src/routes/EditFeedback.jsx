@@ -4,7 +4,7 @@ import Body from '../components/ui/Body';
 import { ReactComponent as ArrowDown } from '../assets/shared/icon-arrow-down.svg';
 import { ReactComponent as PlusIcon } from '../assets/shared/icon-plus.svg';
 import { useState } from 'react';
-import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
 import { useAuthContext } from '../context/AuthContext';
 import { deleteFeedback, editFeedback } from '../api/firebase';
@@ -192,24 +192,34 @@ export default function EditFeedback() {
                 {descriptionError}
               </p>
             )}
-            <button className={styles.submitButton} type='submit'>
-              Save Changes
-            </button>
+            <div className={styles.footer}>
+              <div className={styles.right}>
+                <div>
+                  <button className={styles.submitButton} type='submit'>
+                    Save Changes
+                  </button>
+                </div>
+                <div>
+                  <button
+                    className={styles.cancelButton}
+                    onClick={() => navigate(-1, { replace: true })}
+                    type='button'
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <div>
+                <button
+                  className={styles.deleteButton}
+                  onClick={handleClickDelete}
+                  type='button'
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
           </form>
-          <button
-            className={styles.cancelButton}
-            onClick={() => navigate(-1, { replace: true })}
-            type='button'
-          >
-            Cancel
-          </button>
-          <button
-            className={styles.deleteButton}
-            onClick={handleClickDelete}
-            type='button'
-          >
-            Delete
-          </button>
         </Body>
       </main>
     </>

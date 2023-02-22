@@ -7,3 +7,13 @@
   align-items: center;
   justify-content: space-between;
 }
+
+@media screen and (min-width: 768px) {
+  .nav {
+    margin: 4.5rem 2.5rem 2.5rem;
+  }
+
+  .main {
+    margin: 1rem;
+  }
+}

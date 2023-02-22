@@ -141,17 +141,23 @@ export default function AddFeedback() {
                 {descriptionError}
               </p>
             )}
-            <button className={styles.submitButton} type='submit'>
-              Add Feedback
-            </button>
+            <div className={styles.footer}>
+              <div>
+                <button className={styles.submitButton} type='submit'>
+                  Add Feedback
+                </button>
+              </div>
+              <div>
+                <button
+                  className={styles.cancelButton}
+                  onClick={(event) => navigate(-1)}
+                  type='button'
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
           </form>
-          <button
-            className={styles.cancelButton}
-            onClick={(event) => navigate(-1)}
-            type='button'
-          >
-            Cancel
-          </button>
         </Body>
       </main>
     </>

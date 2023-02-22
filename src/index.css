@@ -58,11 +58,17 @@
   );
 }
 
+@media screen and (min-width: 768px) {
+  :root {
+    /* --font-size-body3: 0.9375rem; */
+    /* --base-padding : 2.5rem; */
+  }
+}
+
 html {
   /* base font 16px */
 
   /* mobile 13px */
-  /* font-size: 81.25%; */
 
   /* to prevent scrollbar moving the layout when sidebar appears*/
   scrollbar-gutter: stable;

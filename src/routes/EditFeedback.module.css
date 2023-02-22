@@ -157,3 +157,41 @@
 .deleteButton:hover {
   background-color: var(--color-hover-red);
 }
+
+@media screen and (min-width: 768px) {
+  .nav {
+    margin: 3.5rem 7.25rem;
+  }
+
+  .main {
+    margin: 3.5rem 5.5rem 0;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .submitButton {
+    margin: 0;
+  }
+
+  .deleteButton {
+    margin: 0;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+  }
+
+  .h1 {
+    font-size: var(--font-size-h1);
+    margin-bottom: 2.5rem;
+  }
+}

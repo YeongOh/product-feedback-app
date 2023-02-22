@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useMediaQuery } from '@react-hook/media-query';
+import { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
-import Feedback from '../components/feedback';
+import RoadmapFeedback from '../components/RoadmapFeedback';
 import AddFeedbackButton from '../components/ui/AddFeedbackButton';
 import BackButton from '../components/ui/BackButton';
 import LoginButton from '../components/ui/LoginButton';
@@ -12,21 +13,11 @@ export default function Roadmap() {
   const { feedbacks } = useLoaderData();
   // only in mobile
   const [filter, setFilter] = useState('planned');
+  const tabletScreen = useMediaQuery('only screen and (min-width: 768px)');
 
-  const filteredFeedbacks = filterFeedbacks(feedbacks, filter);
-
-  const plannedLength = useMemo(
-    () => filterFeedbacks(feedbacks, 'planned').length,
-    [feedbacks]
-  );
-  const inProgressLength = useMemo(
-    () => filterFeedbacks(feedbacks, 'in-progress').length,
-    [feedbacks]
-  );
-  const liveLength = useMemo(
-    () => filterFeedbacks(feedbacks, 'live').length,
-    [feedbacks]
-  );
+  const plannedFeedbacks = filterFeedbacks(feedbacks, 'planned');
+  const inProgressFeedbacks = filterFeedbacks(feedbacks, 'in-progress');
+  const liveFeedbacks = filterFeedbacks(feedbacks, 'live');
 
   return (
     <>
@@ -38,7 +29,7 @@ export default function Roadmap() {
         {currentUser && <AddFeedbackButton />}
         {!currentUser && <LoginButton />}
       </nav>
-      <main>
+      <main className={styles.main}>
         <div
           className={styles.filterBar}
           onClick={(event) => setFilter(event.target.name)}
@@ -50,7 +41,7 @@ export default function Roadmap() {
             }`}
             type='button'
           >
-            Planned ({plannedLength})
+            Planned ({plannedFeedbacks?.length})
           </button>
           <button
             name='in-progress'
@@ -59,58 +50,63 @@ export default function Roadmap() {
             }`}
             type='button'
           >
-            In-Progress ({inProgressLength})
+            In-Progress ({inProgressFeedbacks?.length})
           </button>
           <button
             name='live'
             className={`${styles.filter} ${filter === 'live' && styles.live}`}
             type='button'
           >
-            Live ({liveLength})
+            Live ({liveFeedbacks?.length})
           </button>
         </div>
-        {filter === 'planned' && (
-          <section className={styles.section}>
-            <div className={styles.desc}>
-              <div className={styles.status}>Planned ({plannedLength})</div>
-              <p className={styles.p}>Ideas prioritized for research</p>
-            </div>
-            <ul>
-              {filteredFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} isInRoadmap />
-              ))}
-            </ul>
-          </section>
-        )}
-        {filter === 'in-progress' && (
-          <section className={styles.section}>
-            <div className={styles.desc}>
-              <div className={styles.status}>
-                In-Progress ({inProgressLength})
+        <div className={styles.allSections}>
+          {(filter === 'planned' || tabletScreen) && (
+            <section className={styles.section}>
+              <div className={styles.desc}>
+                <div className={styles.status}>
+                  Planned ({plannedFeedbacks?.length})
+                </div>
+                <p className={styles.p}>Ideas prioritized for research</p>
               </div>
-              <p className={styles.p}>Currently being developed</p>
-            </div>
-            <ul>
-              {filteredFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} isInRoadmap />
-              ))}
-            </ul>
-          </section>
-        )}
-
-        {filter === 'live' && (
-          <section className={styles.section}>
-            <div className={styles.desc}>
-              <div className={styles.status}>live ({inProgressLength})</div>
-              <p className={styles.p}>Released features</p>
-            </div>
-            <ul>
-              {filteredFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} isInRoadmap />
-              ))}
-            </ul>
-          </section>
-        )}
+              <ul>
+                {plannedFeedbacks.map((feedback) => (
+                  <RoadmapFeedback key={feedback.id} feedback={feedback} />
+                ))}
+              </ul>
+            </section>
+          )}
+          {(filter === 'in-progress' || tabletScreen) && (
+            <section className={styles.section}>
+              <div className={styles.desc}>
+                <div className={styles.status}>
+                  In-Progress ({inProgressFeedbacks?.length})
+                </div>
+                <p className={styles.p}>Currently being developed</p>
+              </div>
+              <ul>
+                {inProgressFeedbacks.map((feedback) => (
+                  <RoadmapFeedback key={feedback.id} feedback={feedback} />
+                ))}
+              </ul>
+            </section>
+          )}
+          {(filter === 'live' || tabletScreen) && (
+            <section className={styles.section}>
+              <div className={styles.desc}>
+                <div className={styles.status}>
+                  live ({liveFeedbacks?.length})
+                </div>
+                <p className={styles.p}>Released features</p>
+              </div>
+              <ul>
+                {liveFeedbacks.map((feedback) => (
+                  <RoadmapFeedback key={feedback.id} feedback={feedback} />
+                ))}
+              </ul>
+            </section>
+          )}
+        </div>
       </main>
     </>
   );

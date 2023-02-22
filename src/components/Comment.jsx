@@ -45,33 +45,39 @@ export default function Comment({ comment, feedbackId }) {
         </button>
       </div>
 
-      <p className={styles.content}>{comment.content}</p>
-      {isReplying && (
-        <form onSubmit={handleSubmit} className={styles.form}>
-          <input
-            value={replyText}
-            onChange={(event) => setReplyText(event.target.value)}
-            required
-            maxLength='250'
-          />
-          <button className={styles.submitButton} type='submit'>
-            Post Reply
-          </button>
-        </form>
-      )}
-      {replies && (
-        <ul className={styles.repliesContainer}>
-          {replies.map((reply) => (
-            <Reply
-              key={reply.id}
-              reply={reply}
-              feedbackId={feedbackId}
-              commentId={comment.id}
-              onAddReply={handleAddReply}
+      <div
+        className={`${replies.length > 0 && styles.border} ${
+          styles.contentContainer
+        }`}
+      >
+        <p className={styles.content}>{comment.content}</p>
+        {isReplying && (
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <input
+              value={replyText}
+              onChange={(event) => setReplyText(event.target.value)}
+              required
+              maxLength='250'
             />
-          ))}
-        </ul>
-      )}
+            <button className={styles.submitButton} type='submit'>
+              Post Reply
+            </button>
+          </form>
+        )}
+        {replies && (
+          <ul className={styles.repliesContainer}>
+            {replies.map((reply) => (
+              <Reply
+                key={reply.id}
+                reply={reply}
+                feedbackId={feedbackId}
+                commentId={comment.id}
+                onAddReply={handleAddReply}
+              />
+            ))}
+          </ul>
+        )}
+      </div>
     </li>
   );
 }

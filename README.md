@@ -60,6 +60,7 @@ To change the color and some css properties of SVG icons, you have to install SV
 
 Sliding sidebar works similar to a horizontal image scroller. You hide sidebar outside of the screen by giving css property "right: sidebar.width" then giving "transform: translateX(sidebar.width)". It seems pretty straightforward, but I have seen poor implementations all the time as I browse through the web. Sometimes you are able to scroll even after the sidebar appears. If you disable the scrollbar when the sidebar appears, the screen expands by scrollbar's width, pulling and pushing the screen. These little things can annoy sensitive users like myself and can give the impression that the website is not a production-ready. To fix these, the following css was used.
 
+
 ```css
 html {
   scrollbar-gutter: stable;
@@ -107,6 +108,8 @@ However, the problem arises when you try to sort feedbacks by undefined values i
   return b.comments?.length - a.comments?.length;
 });
 ```
+
+#### Roadmap Filter
 
 ```html
 

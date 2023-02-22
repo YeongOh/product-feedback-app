@@ -1,10 +1,6 @@
 import styles from './Index.module.css';
-// icons
 import empty from '../assets/images/illustration-empty.svg';
-// components
 import Feedback from '../components/Feedback';
-
-// hooks
 import { useLoaderData } from 'react-router-dom';
 import { getFeedbacks } from '../api/firebase';
 import Navbar from '../components/Navbar';
@@ -36,10 +32,14 @@ export default function Index() {
         feedbacks={feedbacks}
       />
       <main>
-        <Sortbar onSortChange={setSort} sort={sort} />
-        <div>
+        <Sortbar
+          onSortChange={setSort}
+          sort={sort}
+          totalFeedbacks={filteredFeedbacks?.length}
+        />
+        <div className={styles.noFeedback}>
           {(!feedbacks || sortedFeedbacks?.length === 0) && (
-            <div className={styles.noFeedback}>
+            <div className={styles.noFeedbackBody}>
               <img src={empty} alt='' />
               <h1 className={styles.noFeedbackTitle}>
                 There is no feedback yet.
@@ -53,14 +53,14 @@ export default function Index() {
               {currentUser && <AddFeedbackButton />}
             </div>
           )}
-          {sortedFeedbacks?.length >= 0 && (
-            <ul>
-              {sortedFeedbacks.map((feedback) => (
-                <Feedback key={feedback.id} feedback={feedback} />
-              ))}
-            </ul>
-          )}
         </div>
+        {sortedFeedbacks?.length >= 0 && (
+          <ul>
+            {sortedFeedbacks.map((feedback) => (
+              <Feedback key={feedback.id} feedback={feedback} />
+            ))}
+          </ul>
+        )}
       </main>
     </>
   );
