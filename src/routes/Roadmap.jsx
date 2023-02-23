@@ -13,7 +13,7 @@ export default function Roadmap() {
   const { feedbacks } = useLoaderData();
   // only in mobile
   const [filter, setFilter] = useState('planned');
-  const tabletScreen = useMediaQuery('only screen and (min-width: 768px)');
+  const tabletScreen = useMediaQuery('only screen and (min-width: 700px)');
 
   const plannedFeedbacks = filterFeedbacks(feedbacks, 'planned');
   const inProgressFeedbacks = filterFeedbacks(feedbacks, 'in-progress');

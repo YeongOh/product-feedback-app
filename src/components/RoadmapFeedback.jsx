@@ -22,24 +22,33 @@ export default function Feedback({ feedback }) {
     <li className={styles.feedback}>
       <div className={styles.bodyContainer}>
         <div className={`${styles.body} ${statusClass}`}>
-          <StatusTag status={status} />
-          <Link to={`/feedbacks/${id}`} className={styles.title}>
-            {title}
-          </Link>
-          <p className={styles.description}>{description}</p>
-          <CategoryButton className={styles.categoryButton}>
-            {category}
-          </CategoryButton>
-          <div className={styles.footer}>
-            <div className={styles.mobile}>
-              <UpvoteButton
-                feedbackId={id}
-                likedUsers={likedUsers}
-                upvotes={upvotes}
-                isInRoadmap
-              />
+          <div>
+            <StatusTag status={status} />
+            <Link to={`/feedbacks/${id}`} className={styles.title}>
+              {title}
+            </Link>
+            <p className={styles.description}>{description}</p>
+            <div>
+              <div>
+                <CategoryButton
+                  className={styles.categoryButton}
+                  disableInteraction
+                >
+                  {category}
+                </CategoryButton>
+              </div>
+              <div className={styles.footer}>
+                <div className={styles.mobile}>
+                  <UpvoteButton
+                    feedbackId={id}
+                    likedUsers={likedUsers}
+                    upvotes={upvotes}
+                    isInRoadmap
+                  />
+                </div>
+                {comments && <CommentBubble>{comments?.length}</CommentBubble>}
+              </div>
             </div>
-            {comments && <CommentBubble>{comments?.length}</CommentBubble>}
           </div>
         </div>
       </div>

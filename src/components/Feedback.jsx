@@ -18,16 +18,21 @@ export default function Feedback({ feedback }) {
                 {title}
               </Link>
               <p className={styles.description}>{description}</p>
-              <CategoryButton className={styles.categoryButton}>
+              <CategoryButton
+                className={styles.categoryButton}
+                disableInteraction
+              >
                 {category}
               </CategoryButton>
             </div>
-            <div>
-              <UpvoteButton
-                feedbackId={id}
-                likedUsers={likedUsers}
-                upvotes={upvotes}
-              />
+            <div className={styles.upvoteContainer}>
+              <div>
+                <UpvoteButton
+                  feedbackId={id}
+                  likedUsers={likedUsers}
+                  upvotes={upvotes}
+                />
+              </div>
             </div>
           </div>
           <div className={styles.commentContainer}>

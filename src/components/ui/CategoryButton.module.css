@@ -11,7 +11,7 @@
   display: inline;
 }
 
-.button:hover {
+.button:hover:not(.disable) {
   background-color: var(--color-category-hover);
   transition: all 0.25s ease-in-out;
 }
@@ -20,4 +20,8 @@
   background-color: var(--color-primary-blue);
   color: var(--color-primary-white);
   transition: all 0.25s ease-in-out;
+}
+
+.button.disable {
+  cursor: auto;
 }

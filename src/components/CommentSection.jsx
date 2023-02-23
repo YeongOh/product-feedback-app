@@ -43,7 +43,9 @@ export default function CommentSection({ feedback }) {
             </ul>
           </>
         ) : (
-          <div className={styles.commengLength}>No Comments yet!</div>
+          <div className={styles.commentLength}>
+            Be the first one to comment!
+          </div>
         )}
       </Body>
       <Body className={styles.addForm}>

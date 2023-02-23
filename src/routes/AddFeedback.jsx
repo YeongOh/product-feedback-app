@@ -24,24 +24,20 @@ export default function AddFeedback() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (title.trim() === '') {
-      setTitleError(`Title can't be empty`);
-      return;
-    }
-    if (category === 'Feature') {
-      setCategoryError('Please select the feature');
-      return;
-    }
-    if (description.trim() === '') {
+    if (title.trim() === '') setTitleError(`Title can't be empty`);
+    if (category === 'Feature') setCategoryError('Please select the feature');
+    if (description.trim() === '')
       setDescriptionError(`Description can't be empty`);
-      return;
-    }
+
+    console.log(categoryError);
+    console.log(descriptionError);
+
     const id = await addFeedback(title, category, description, currentUser);
     return navigate(`/feedbacks/${id}`, { replace: true });
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <BackButton></BackButton>
       </nav>
@@ -160,6 +156,6 @@ export default function AddFeedback() {
           </form>
         </Body>
       </main>
-    </>
+    </div>
   );
 }

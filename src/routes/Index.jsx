@@ -25,20 +25,20 @@ export default function Index() {
   const sortedFeedbacks = sortFeedbacks(filteredFeedbacks, sort);
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <Navbar
         onFilterChange={setFilter}
         filter={filter}
         feedbacks={feedbacks}
       />
-      <main>
+      <main className={styles.main}>
         <Sortbar
           onSortChange={setSort}
           sort={sort}
           totalFeedbacks={filteredFeedbacks?.length}
         />
-        <div className={styles.noFeedback}>
-          {(!feedbacks || sortedFeedbacks?.length === 0) && (
+        {(!feedbacks || sortedFeedbacks?.length === 0) && (
+          <div className={styles.noFeedback}>
             <div className={styles.noFeedbackBody}>
               <img src={empty} alt='' />
               <h1 className={styles.noFeedbackTitle}>
@@ -52,8 +52,8 @@ export default function Index() {
               {!currentUser && <LoginButton />}
               {currentUser && <AddFeedbackButton />}
             </div>
-          )}
-        </div>
+          </div>
+        )}
         {sortedFeedbacks?.length >= 0 && (
           <ul>
             {sortedFeedbacks.map((feedback) => (
@@ -62,7 +62,7 @@ export default function Index() {
           </ul>
         )}
       </main>
-    </>
+    </div>
   );
 }
 

@@ -22,7 +22,7 @@ export default function FeedbackDetail() {
   const { uid: postUid } = feedback;
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li>
@@ -42,6 +42,6 @@ export default function FeedbackDetail() {
         <Feedback feedback={feedback} />
         <CommentSection feedback={feedback} />
       </main>
-    </>
+    </div>
   );
 }

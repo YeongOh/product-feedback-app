@@ -18,3 +18,9 @@
 .button:last-child {
   border-bottom: none;
 }
+
+@media screen and (min-width: 700px) {
+  .button {
+    font-size: var(--font-size-body2);
+  }
+}

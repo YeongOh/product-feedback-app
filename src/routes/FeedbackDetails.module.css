@@ -8,12 +8,23 @@
   justify-content: space-between;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .nav {
     margin: 4.5rem 2.5rem 2.5rem;
   }
 
   .main {
     margin: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    max-width: 45rem;
+    margin: 0 auto;
+  }
+
+  .nav {
+    margin: 4.5rem 1.5rem 2.5rem;
   }
 }

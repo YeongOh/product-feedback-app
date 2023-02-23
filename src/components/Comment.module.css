@@ -65,7 +65,7 @@
   transition: all 0.15s ease-in-out;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .content {
     margin-left: 2.3rem;
   }

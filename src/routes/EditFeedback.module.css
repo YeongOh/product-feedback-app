@@ -158,13 +158,13 @@
   background-color: var(--color-hover-red);
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .nav {
-    margin: 3.5rem 7.25rem;
+    margin: 4.5rem 4.5rem;
   }
 
   .main {
-    margin: 3.5rem 5.5rem 0;
+    margin: 3.5rem 2.5rem 0;
   }
 
   .footer {
@@ -193,5 +193,27 @@
   .h1 {
     font-size: var(--font-size-h1);
     margin-bottom: 2.5rem;
+  }
+
+  .dropdownButton {
+    font-size: var(--font-size-body2);
+  }
+
+  .deleteButton,
+  .cancelButton,
+  .submitButton {
+    font-size: var(--font-size-body2);
+    padding: 1rem 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .nav {
+    margin: 4.5rem 2.5rem;
   }
 }

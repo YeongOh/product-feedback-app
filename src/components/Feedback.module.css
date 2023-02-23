@@ -25,6 +25,11 @@
   margin-bottom: 0.5rem;
 }
 
+.title:hover {
+  color: var(--color-hover-blue);
+  transition: color 0.2s ease-in-out;
+}
+
 .description {
   font-size: var(--font-size-body3);
   color: var(--color-secondary-dark-grey);
@@ -36,7 +41,7 @@
   align-items: flex-end;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .left {
     display: flex;
     flex-direction: row-reverse;
@@ -53,5 +58,17 @@
 
   .title {
     font-size: var(--font-size-h3);
+  }
+
+  .upvoteContainer {
+    display: flex;
+    justify-content: center;
+    min-width: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .bodyContainer {
+    margin: 0;
   }
 }

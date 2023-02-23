@@ -22,3 +22,9 @@
 .span.live {
   color: var(--color-tertiary-sky);
 }
+
+@media screen and (min-width: 1024px) {
+  .div {
+    font-size: var(--font-size-body2);
+  }
+}

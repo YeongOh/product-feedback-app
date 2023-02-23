@@ -7,10 +7,12 @@ import { useState } from 'react';
 import { ReactComponent as Suggestion } from '../assets/shared/icon-suggestions.svg';
 import DropdownItem from './ui/DropdownItem';
 import LoginButton from './ui/LoginButton';
+import { useMediaQuery } from '@react-hook/media-query';
 
 export default function Sortbar({ sort, onSortChange, totalFeedbacks }) {
   const { currentUser } = useAuthContext();
   const [openMenu, setOpenMenu] = useState(false);
+  const nonMobile = useMediaQuery('only screen and (min-width: 700px)');
 
   return (
     <div className={styles.sortContainer}>
@@ -39,11 +41,16 @@ export default function Sortbar({ sort, onSortChange, totalFeedbacks }) {
           )}
         </div>
       </div>
-      {currentUser && (
-        <LinkButton to='/feedbacks/add'>
-          <Plus></Plus> Add Feedback
-        </LinkButton>
-      )}
+      <div className={styles.buttonWrapper}>
+        {currentUser && (
+          <LinkButton to='/feedbacks/add'>
+            <Plus></Plus> Add Feedback
+          </LinkButton>
+        )}
+        {currentUser && nonMobile && (
+          <button className={styles.logoutButton}>Logout</button>
+        )}
+      </div>
       {!currentUser && <LoginButton />}
     </div>
   );

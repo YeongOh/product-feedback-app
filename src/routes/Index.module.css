@@ -16,7 +16,7 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  padding: var(--base-padding);
+  padding: 5rem var(--base-padding);
 }
 
 .noFeedbackTitle {
@@ -48,14 +48,27 @@
   transition: all 0.15s ease-in-out;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .noFeedbackBody {
     font-size: var(--font-size-body2);
     width: 70%;
-    padding: 5rem;
   }
 
   .noFeedbackTitle {
     font-size: var(--font-size-h1);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    display: flex;
+  }
+
+  .noFeedback {
+    margin: 0;
+  }
+
+  .main {
+    min-width: 50rem;
   }
 }

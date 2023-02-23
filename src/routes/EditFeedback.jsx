@@ -37,19 +37,15 @@ export default function EditFeedback() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (title.trim() === '') {
-      setTitleError(`Title can't be empty`);
-      return;
-    }
-    if (category === 'Feature') {
-      setCategoryError('Please select the feature');
-      return;
-    }
-    if (description.trim() === '') {
+    if (title.trim() === '') setTitleError(`Title can't be empty`);
+    if (category === 'Feature') setCategoryError('Please select the feature');
+    if (description.trim() === '')
       setDescriptionError(`Description can't be empty`);
+
+    if (titleError.length || descriptionError.length || categoryError.length)
       return;
-    }
-    await editFeedback(id, title, category, description, status);
+
+    const id = await editFeedback(id, title, category, description, status);
     return navigate(`/feedbacks/${id}`, { replace: true });
   };
 
@@ -62,7 +58,7 @@ export default function EditFeedback() {
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <nav className={styles.nav}>
         <BackButton></BackButton>
       </nav>
@@ -73,7 +69,7 @@ export default function EditFeedback() {
           </div>
           <form onSubmit={handleSubmit}>
             <div className={styles.titleContainer}>
-              <h1 className={styles.h1}>Create New Feedback</h1>
+              <h1 className={styles.h1}>Editing '{feedback?.title}'</h1>
               <label className={styles.label} htmlFor='title'>
                 Feedback Title
               </label>
@@ -222,6 +218,6 @@ export default function EditFeedback() {
           </form>
         </Body>
       </main>
-    </>
+    </div>
   );
 }

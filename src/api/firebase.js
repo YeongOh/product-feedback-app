@@ -127,7 +127,7 @@ export async function addFeedback(title, category, description, user) {
  * @return {string} id - edited feedback's id
  */
 export async function editFeedback(id, title, category, description, status) {
-  update(ref(database, `feedbacks/${id}`), {
+  await update(ref(database, `feedbacks/${id}`), {
     status,
     title,
     category,
@@ -141,7 +141,8 @@ export async function editFeedback(id, title, category, description, status) {
  * @param {number} id
  */
 export async function deleteFeedback(id) {
-  remove(ref(database, `feedbacks/${id}`));
+  await remove(ref(database, `feedbacks/${id}`));
+  return true;
 }
 
 /**
@@ -160,7 +161,7 @@ export async function addComment(feedbackId, currentUser, commentText) {
     id: newCommentRef.key,
     user: currentUser,
   };
-  // console.log(newCommentRef);
+
   await set(newCommentRef, newComment);
   return newComment;
 }

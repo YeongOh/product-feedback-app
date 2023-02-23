@@ -55,7 +55,26 @@
   font-weight: 700;
 }
 
-@media screen and (min-width: 768px) {
+.logoutButton {
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: var(--base-border-radius);
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  font-size: var(--font-size-body3);
+}
+
+.logoutButton:hover {
+  background-color: var(--color-hover-blue);
+  color: var(--color-primary-white);
+  transition: all 0.15s ease-in-out;
+}
+
+@media screen and (min-width: 700px) {
   .sortContainer {
     border-radius: var(--base-border-radius);
     margin: var(--base-margin);
@@ -68,5 +87,26 @@
     gap: 0.8rem;
     font-size: var(--font-size-h3);
     font-weight: 700;
+  }
+
+  .sortOption {
+    font-size: var(--font-size-body2);
+  }
+
+  .dropdownMenu {
+    min-width: 16rem;
+  }
+
+  .buttonWrapper {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sortContainer {
+    border-radius: var(--base-border-radius);
+    margin: var(--base-margin) 0;
+    min-height: 4.5rem;
   }
 }

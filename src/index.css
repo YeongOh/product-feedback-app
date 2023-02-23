@@ -58,13 +58,6 @@
   );
 }
 
-@media screen and (min-width: 768px) {
-  :root {
-    /* --font-size-body3: 0.9375rem; */
-    /* --base-padding : 2.5rem; */
-  }
-}
-
 html {
   /* base font 16px */
 
@@ -151,4 +144,20 @@ button {
 
 input:focus {
   outline: 1px var(--color-primary-blue) solid;
+}
+
+@media screen and (min-width: 700px) {
+  label,
+  p,
+  input,
+  textarea {
+    font-size: var(--font-size-body2);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  body {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
 }

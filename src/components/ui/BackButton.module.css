@@ -30,3 +30,10 @@
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7477%)
     hue-rotate(263deg) brightness(112%) contrast(105%);
 }
+
+@media screen and (min-width: 700px) {
+  .link,
+  .span {
+    font-size: var(--font-size-body2);
+  }
+}

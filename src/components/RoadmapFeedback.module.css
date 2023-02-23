@@ -10,6 +10,9 @@
 }
 
 .body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background-color: var(--color-primary-white);
   padding: var(--base-padding);
   font-size: var(--font-size-body3);
@@ -35,6 +38,11 @@
   margin-bottom: 0.5rem;
 }
 
+.title:hover {
+  color: var(--color-hover-blue);
+  transition: color 0.2s ease-in-out;
+}
+
 .description {
   font-size: var(--font-size-body3);
   color: var(--color-secondary-dark-grey);
@@ -48,8 +56,22 @@
   align-items: center;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .bodyContainer {
     margin: 0;
+  }
+
+  .body {
+    min-height: 15rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .description {
+    font-size: var(--font-size-body2);
+  }
+
+  .title {
+    font-size: var(--font-size-h3);
   }
 }

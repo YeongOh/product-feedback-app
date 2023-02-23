@@ -29,6 +29,11 @@
   text-decoration: underline;
 }
 
+.roadmapLink:hover {
+  color: var(--color-hover-blue);
+  transition: color 0.2s ease-in-out;
+}
+
 .roadmapList {
   color: var(--color-secondary-dark-grey);
   width: 100%;
@@ -40,9 +45,9 @@
   font-weight: 700;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 700px) {
   .roadmapContainer {
     margin-bottom: 0;
-    min-height: 11rem;
+    min-height: 12.5rem;
   }
 }
