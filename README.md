@@ -32,12 +32,12 @@ Users should be able to:
 
 ### Screenshot
 
-![screenshot](./screenshot.jpg)
-![screenshot_mobile](./screenshot_mobile.jpg)
+![screenshot](./screenshot.JPG)
+![screenshot_mobile](./screenshot_mobile.JPG)
 
 ### Links
 
-- Solution URL: ()
+- Github URL: (https://github.com/YeongOh/product-feedback-app/)
 - Live Site URL: ()
 
 ## My process

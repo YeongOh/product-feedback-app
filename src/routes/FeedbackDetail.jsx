@@ -5,7 +5,7 @@ import BackButton from '../components/ui/BackButton';
 import LinkButton from '../components/ui/LinkButton';
 import { useAuthContext } from '../context/AuthContext';
 import CommentSection from '../components/CommentSection';
-import Feedback from '../components/feedback';
+import Feedback from '../components/Feedback';
 
 export async function loader({ params }) {
   const feedback = await getFeedback(params.feedbackId);
