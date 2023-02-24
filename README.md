@@ -37,8 +37,8 @@ Users should be able to:
 
 ### Links
 
-- Github URL: (github.com/YeongOh/product-feedback-app/)
-- Live Site URL: (yeong-product-feedback.netlify.app)
+- Github URL: (https://github.com/YeongOh/product-feedback-app/)
+- Live Site URL: ([yeong-product-feedback.netlify.app](https://yeong-product-feedback.netlify.app/))
 
 ## My process
 
