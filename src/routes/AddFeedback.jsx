@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
 import { useAuthContext } from '../context/AuthContext';
 import { addFeedback } from '../api/firebase';
+import { Helmet } from 'react-helmet';
 
 export default function AddFeedback() {
   const [title, setTitle] = useState('');
@@ -42,6 +43,9 @@ export default function AddFeedback() {
 
   return (
     <div className={styles.wrapper}>
+      <Helmet>
+        <title>Add a Feedback | Product Feedback App</title>
+      </Helmet>
       <nav className={styles.nav}>
         <BackButton></BackButton>
       </nav>

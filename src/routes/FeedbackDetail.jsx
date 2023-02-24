@@ -6,6 +6,7 @@ import LinkButton from '../components/ui/LinkButton';
 import { useAuthContext } from '../context/AuthContext';
 import CommentSection from '../components/CommentSection';
 import Feedback from '../components/Feedback';
+import { Helmet } from 'react-helmet';
 
 export async function loader({ params }) {
   const feedback = await getFeedback(params.feedbackId);
@@ -23,6 +24,9 @@ export default function FeedbackDetail() {
 
   return (
     <div className={styles.wrapper}>
+      <Helmet>
+        <title>{feedback?.title} | Product Feedback App</title>
+      </Helmet>
       <nav className={styles.nav}>
         <ul className={styles.ul}>
           <li>

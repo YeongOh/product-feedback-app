@@ -1,5 +1,6 @@
 import { useMediaQuery } from '@react-hook/media-query';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useLoaderData } from 'react-router-dom';
 import RoadmapFeedback from '../components/RoadmapFeedback';
 import AddFeedbackButton from '../components/ui/AddFeedbackButton';
@@ -21,6 +22,13 @@ export default function Roadmap() {
 
   return (
     <>
+      <Helmet>
+        <title>Roadmap | Product Feedback App</title>
+        <meta
+          name='Roadmap of Product Feedback App'
+          content='View all product feedbacks in roadmap.'
+        />
+      </Helmet>
       <nav className={styles.navbar}>
         <div>
           <BackButton colorWhite />
