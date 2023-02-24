@@ -1,4 +1,4 @@
-# Product Feedback App
+# Product Feedback App - [LIVE DEMO](yeong-product-feedback.netlify.app)
 
 ## Table of contents
 
@@ -37,8 +37,8 @@ Users should be able to:
 
 ### Links
 
-- Github URL: (https://github.com/YeongOh/product-feedback-app/)
-- Live Site URL: ()
+- Github URL: (github.com/YeongOh/product-feedback-app/)
+- Live Site URL: (yeong-product-feedback.netlify.app)
 
 ## My process
 

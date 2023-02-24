@@ -9,6 +9,7 @@ import { useState } from 'react';
 import AddFeedbackButton from '../components/ui/AddFeedbackButton';
 import LoginButton from '../components/ui/LoginButton';
 import { useAuthContext } from '../context/AuthContext';
+import { Helmet } from 'react-helmet';
 
 export async function loader() {
   const feedbacks = await getFeedbacks();
@@ -26,6 +27,13 @@ export default function Index() {
 
   return (
     <div className={styles.wrapper}>
+      <Helmet>
+        <title>Home | Product Feedback App</title>
+        <meta
+          name='Product Feedback App'
+          content='View all product feedbacks.'
+        />
+      </Helmet>
       <Navbar
         onFilterChange={setFilter}
         filter={filter}

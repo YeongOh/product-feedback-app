@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DropdownItem from '../components/ui/DropdownItem';
 import { useAuthContext } from '../context/AuthContext';
 import { deleteFeedback, editFeedback } from '../api/firebase';
+import { Helmet } from 'react-helmet';
 
 export default function EditFeedback() {
   const {
@@ -63,6 +64,9 @@ export default function EditFeedback() {
 
   return (
     <div className={styles.wrapper}>
+      <Helmet>
+        <title>Edit {feedback?.title} | Product Feedback App</title>
+      </Helmet>
       <nav className={styles.nav}>
         <BackButton></BackButton>
       </nav>
