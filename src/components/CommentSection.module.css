@@ -41,6 +41,15 @@
   transition: all 0.15s ease-in-out;
 }
 
+.error {
+  margin: 0 0 1rem;
+  color: var(--color-error);
+}
+
+.errorFocus {
+  outline: 1px var(--color-tertiary-red) solid;
+}
+
 @media screen and (min-width: 700px) {
   .submitButton {
     font-size: var(--font-size-body2);

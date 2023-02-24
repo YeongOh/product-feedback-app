@@ -36,3 +36,9 @@
     min-height: 12.5rem;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  .categoryContainer {
+    min-height: 10.6rem;
+  }
+}

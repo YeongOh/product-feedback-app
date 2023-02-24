@@ -8,6 +8,7 @@ import { ReactComponent as Suggestion } from '../assets/shared/icon-suggestions.
 import DropdownItem from './ui/DropdownItem';
 import LoginButton from './ui/LoginButton';
 import { useMediaQuery } from '@react-hook/media-query';
+import { logout } from '../api/firebase';
 
 export default function Sortbar({ sort, onSortChange, totalFeedbacks }) {
   const { currentUser } = useAuthContext();
@@ -48,7 +49,13 @@ export default function Sortbar({ sort, onSortChange, totalFeedbacks }) {
           </LinkButton>
         )}
         {currentUser && nonMobile && (
-          <button className={styles.logoutButton}>Logout</button>
+          <button
+            className={styles.logoutButton}
+            type='button'
+            onClick={logout}
+          >
+            Logout
+          </button>
         )}
       </div>
       {!currentUser && <LoginButton />}

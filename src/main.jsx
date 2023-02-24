@@ -27,7 +27,6 @@ const router = createBrowserRouter([
         element: <Index />,
         loader: indexLoader,
       },
-
       {
         path: 'roadmap',
         element: <Roadmap />,

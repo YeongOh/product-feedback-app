@@ -29,8 +29,12 @@ export default function AddFeedback() {
     if (description.trim() === '')
       setDescriptionError(`Description can't be empty`);
 
-    console.log(categoryError);
-    console.log(descriptionError);
+    if (
+      title.trim() === '' ||
+      category === 'Feature' ||
+      description.trim() === ''
+    )
+      return;
 
     const id = await addFeedback(title, category, description, currentUser);
     return navigate(`/feedbacks/${id}`, { replace: true });

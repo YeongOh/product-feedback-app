@@ -9,13 +9,13 @@ export default function CommentSection({ feedback }) {
   const { currentUser } = useAuthContext();
   const [commentText, setCommentText] = useState('');
   const [comments, setComments] = useState(feedback.comments);
+  const [error, setError] = useState('');
 
   const handleClick = async (event) => {
     event.preventDefault();
-    if (!currentUser) return;
+    if (!currentUser) return setError('Please login to comment!');
     if (!commentText.trim()) {
-      console.log('empty');
-      return;
+      return setError(`Comment can't be empty!`);
     }
 
     const newComment = await addComment(feedback.id, currentUser, commentText);
@@ -52,12 +52,13 @@ export default function CommentSection({ feedback }) {
         <div className={styles.addComment}>Add Comment</div>
         <form>
           <textarea
-            className={styles.textarea}
+            className={`${styles.textarea} ${error && styles.errorFocus}`}
             placeholder='Type your comment here'
             value={commentText}
             onChange={(event) => setCommentText(event.target.value)}
             maxLength='250'
           ></textarea>
+          {error && <p className={styles.error}>{error}</p>}
           <div className={styles.footer}>
             <p>{250 - commentText.length} Characters left</p>
             <button

@@ -8,6 +8,7 @@ import UserProfile from './ui/UserProfile';
 export default function Comment({ comment, feedbackId }) {
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState('');
+  const [error, setError] = useState('');
   const { currentUser } = useAuthContext();
 
   const repliesArray = comment.replies ? Object.values(comment.replies) : [];
@@ -15,7 +16,8 @@ export default function Comment({ comment, feedbackId }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (replyText.trim() === '') return;
+    if (!currentUser) return setError('Please login to reply');
+    if (replyText.trim() === '') return setError(`Reply can't be empty!`);
     const newReply = await replyComment(
       feedbackId,
       comment,
@@ -52,17 +54,27 @@ export default function Comment({ comment, feedbackId }) {
       >
         <p className={styles.content}>{comment.content}</p>
         {isReplying && (
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <input
-              value={replyText}
-              onChange={(event) => setReplyText(event.target.value)}
-              required
-              maxLength='250'
-            />
-            <button className={styles.submitButton} type='submit'>
-              Post Reply
-            </button>
-          </form>
+          <>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <textarea
+                className={`${styles.replyTextarea} ${
+                  error && styles.errorFocus
+                }`}
+                value={replyText}
+                onChange={(event) => setReplyText(event.target.value)}
+                maxLength='250'
+              />
+              {error && <p className={styles.error}>{error}</p>}
+              <div>
+                <button
+                  className={`${styles.submitButton} ${styles.submitReply}`}
+                  type='submit'
+                >
+                  Post Reply
+                </button>
+              </div>
+            </form>
+          </>
         )}
         {replies && (
           <ul className={styles.repliesContainer}>

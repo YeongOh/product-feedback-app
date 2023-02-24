@@ -47,6 +47,33 @@
   transition: all 0.15s ease-in-out;
 }
 
+.submitButton.submitReply {
+  margin-top: 0.2rem;
+}
+
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.replyTextarea {
+  height: 5rem;
+}
+
+.error {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  margin: 0 0 1rem;
+  color: var(--color-error);
+}
+
+.errorFocus {
+  outline: 1px var(--color-tertiary-red) solid;
+}
+
 @media screen and (min-width: 700px) {
   .repliesContainer {
     border-left: none;
@@ -54,5 +81,26 @@
 
   .content {
     margin-left: 3.5rem;
+  }
+
+  .form {
+    margin-left: 2rem;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  .replyTextarea {
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+  }
+
+  .submitButton.submitReply {
+    margin-top: 1rem;
+  }
+
+  .error {
+    top: 90%;
+    left: 1.5rem;
   }
 }

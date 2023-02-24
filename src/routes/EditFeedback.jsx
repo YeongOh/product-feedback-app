@@ -42,7 +42,11 @@ export default function EditFeedback() {
     if (description.trim() === '')
       setDescriptionError(`Description can't be empty`);
 
-    if (titleError.length || descriptionError.length || categoryError.length)
+    if (
+      title.trim() === '' ||
+      category === 'Feature' ||
+      description.trim() === ''
+    )
       return;
 
     const id = await editFeedback(id, title, category, description, status);

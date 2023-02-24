@@ -1,3 +1,5 @@
+# Product Feedback App
+
 ## Table of contents
 
 - [Overview](#overview)
@@ -10,7 +12,6 @@
   - [Built with](#built-with)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -26,11 +27,13 @@ Users should be able to:
 - Filter suggestions by category
 - Add comments and replies to a product feedback request
 - Upvote product feedback requests
-- Keep track of any changes, even after refreshing the browser (`localStorage` could be used for this if you're not building out a full-stack app)
+- Login and logout
+- Use external databases for persistent data
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![screenshot](./screenshot.jpg)
+![screenshot_mobile](./screenshot_mobile.jpg)
 
 ### Links
 
@@ -59,7 +62,6 @@ To change the color and some css properties of SVG icons, you have to install SV
 #### Sliding Sidebar
 
 Sliding sidebar works similar to a horizontal image scroller. You hide sidebar outside of the screen by giving css property "right: sidebar.width" then giving "transform: translateX(sidebar.width)". It seems pretty straightforward, but I have seen poor implementations all the time as I browse through the web. Sometimes you are able to scroll even after the sidebar appears. If you disable the scrollbar when the sidebar appears, the screen expands by scrollbar's width, pulling and pushing the screen. These little things can annoy sensitive users like myself and can give the impression that the website is not a production-ready. To fix these, the following css was used.
-
 
 ```css
 html {
@@ -109,21 +111,19 @@ However, the problem arises when you try to sort feedbacks by undefined values i
 });
 ```
 
-#### Roadmap Filter
+#### Sphagetti Codes, Components, Optimization, Refactoring
 
-```html
-
-```
-
-```css
-
-```
-
-```js
-
-```
+During the development, I found myself writing sphagetti codes. I could have separated more components out. However, I really wanted to finish the project as soon as possible, and then go on refactor and optimize. Even though I was doing my best to get the code working early, it still took me more time than I expected. I should not do this type of development in a team project where multiple people are touching the same codebase.
 
 ### Continued development
+
+#### React Query
+
+I'd like to improve on more elegant state management than useState. I have tried React Router loader for the first time, but as it does not provide caching, I will use React Query and incorporate loader whenever I need to prefetch.
+
+#### Time management
+
+In the early stage of the porject, I was so caught up on doing everything perfect. Pixel perfect css, perfect implementation, perfect html and accessibility. This definitely delayed my development on this project. Also, I burn out as well in that process as I was progressing very slow. I should have done this project roughly first, then revisit. After I got exhausted, I really tried to implement at least one feature everyday no matter how small that is. That really helped me to not lose my track and finish the project.
 
 ### Built with
 
@@ -132,13 +132,14 @@ However, the problem arises when you try to sort feedbacks by undefined values i
 - Flexbox
 - Mobile-first workflow
 - [React](https://reactjs.org/)
+- React Router
+- Vite
+- Firebase
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This
+- [Javascript.info](https://javascript.info) - It helped me graps fundamentals of objects and arrays whenever I got confused while doing this project.
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-
-## Acknowledgments
+- Frontend Mentor - [@YeongOh](https://www.frontendmentor.io/profile/YeongOh)
