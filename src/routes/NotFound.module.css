@@ -1,0 +1,24 @@
+.error {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-primary-white);
+  color: var(--color-secondary-dark-blue);
+  border-radius: var(--base-border-radius);
+  margin: var(--base-margin);
+}
+
+.errorBody {
+  text-align: center;
+  font-size: var(--font-size-body3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 5rem var(--base-padding);
+}
+
+.errorTitle {
+  font-size: var(--font-size-h2);
+}

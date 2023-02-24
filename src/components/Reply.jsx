@@ -8,9 +8,13 @@ export default function Reply({ reply, feedbackId, commentId, onAddReply }) {
   const { currentUser } = useAuthContext();
   const [isReplying, setIsReplying] = useState(false);
   const [replyText, setReplyText] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (!currentUser) return setError('Please login to reply!');
+    if (replyText.trim() === '') return setError(`Reply can't be empty!`);
+
     const newReply = await replyReply(
       feedbackId,
       commentId,
@@ -23,8 +27,6 @@ export default function Reply({ reply, feedbackId, commentId, onAddReply }) {
     setReplyText('');
     return;
   };
-
-  console.log(reply.id);
 
   return (
     <li key={reply.id} className={styles.reply}>
@@ -45,12 +47,12 @@ export default function Reply({ reply, feedbackId, commentId, onAddReply }) {
       {isReplying && (
         <form onSubmit={handleSubmit} className={styles.form}>
           <textarea
-            className={styles.textarea}
+            className={`${styles.replyTextarea} ${error && styles.errorFocus}`}
             value={replyText}
             onChange={(event) => setReplyText(event.target.value)}
-            required
             maxLength='250'
           />
+          {error && <p className={styles.error}>{error}</p>}
           <button
             className={`${styles.submitButton} ${styles.submitReply}`}
             type='submit'

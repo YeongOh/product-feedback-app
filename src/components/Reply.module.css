@@ -52,6 +52,7 @@
 }
 
 .form {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -59,6 +60,18 @@
 
 .replyTextarea {
   height: 5rem;
+}
+
+.error {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  margin: 0 0 1rem;
+  color: var(--color-error);
+}
+
+.errorFocus {
+  outline: 1px var(--color-tertiary-red) solid;
 }
 
 @media screen and (min-width: 700px) {
@@ -78,10 +91,16 @@
   }
 
   .replyTextarea {
+    margin-left: 1.5rem;
     margin-right: 1rem;
   }
 
   .submitButton.submitReply {
     margin-top: 1rem;
+  }
+
+  .error {
+    top: 90%;
+    left: 1.5rem;
   }
 }
