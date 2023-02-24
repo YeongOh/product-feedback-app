@@ -103,6 +103,8 @@
 
   .banner {
     background: url('../assets/images/tablet/background-header.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     border-radius: var(--base-border-radius);
     align-items: flex-end;
     width: 33.3%;
