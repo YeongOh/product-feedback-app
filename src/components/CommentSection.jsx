@@ -14,7 +14,6 @@ export default function CommentSection({ feedback }) {
     event.preventDefault();
     if (!currentUser) return;
     if (!commentText.trim()) {
-      console.log('empty');
       return;
     }
 
@@ -57,6 +56,7 @@ export default function CommentSection({ feedback }) {
             value={commentText}
             onChange={(event) => setCommentText(event.target.value)}
             maxLength='250'
+            required
           ></textarea>
           <div className={styles.footer}>
             <p>{250 - commentText.length} Characters left</p>

@@ -53,15 +53,21 @@ export default function Comment({ comment, feedbackId }) {
         <p className={styles.content}>{comment.content}</p>
         {isReplying && (
           <form onSubmit={handleSubmit} className={styles.form}>
-            <input
+            <textarea
+              className={styles.replyTextarea}
               value={replyText}
               onChange={(event) => setReplyText(event.target.value)}
               required
               maxLength='250'
             />
-            <button className={styles.submitButton} type='submit'>
-              Post Reply
-            </button>
+            <div>
+              <button
+                className={`${styles.submitButton} ${styles.submitReply}`}
+                type='submit'
+              >
+                Post Reply
+              </button>
+            </div>
           </form>
         )}
         {replies && (

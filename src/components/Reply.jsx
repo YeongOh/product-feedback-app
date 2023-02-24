@@ -44,13 +44,17 @@ export default function Reply({ reply, feedbackId, commentId, onAddReply }) {
       </p>
       {isReplying && (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <input
+          <textarea
+            className={styles.textarea}
             value={replyText}
             onChange={(event) => setReplyText(event.target.value)}
             required
             maxLength='250'
           />
-          <button className={styles.submitButton} type='submit'>
+          <button
+            className={`${styles.submitButton} ${styles.submitReply}`}
+            type='submit'
+          >
             Post Reply
           </button>
         </form>

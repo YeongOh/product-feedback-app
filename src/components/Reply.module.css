@@ -47,6 +47,20 @@
   transition: all 0.15s ease-in-out;
 }
 
+.submitButton.submitReply {
+  margin-top: 0.2rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.replyTextarea {
+  height: 5rem;
+}
+
 @media screen and (min-width: 700px) {
   .repliesContainer {
     border-left: none;
@@ -54,5 +68,20 @@
 
   .content {
     margin-left: 3.5rem;
+  }
+
+  .form {
+    margin-left: 2rem;
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+  }
+
+  .replyTextarea {
+    margin-right: 1rem;
+  }
+
+  .submitButton.submitReply {
+    margin-top: 1rem;
   }
 }
