@@ -104,7 +104,7 @@ export async function addFeedback(title, category, description, user) {
   const id = newFeedbackRef.key;
 
   await set(newFeedbackRef, {
-    status: 'in-progress',
+    status: 'suggestion',
     upvotes: 0,
     title,
     category,
