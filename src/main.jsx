@@ -39,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'feedbacks/:feedbackId/edit',
-        element: <EditFeedback />,
+        element: (
+          <ProtectedRoute>
+            <EditFeedback />
+          </ProtectedRoute>
+        ),
         loader: feedbackLoader,
       },
       {
