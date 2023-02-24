@@ -40,3 +40,10 @@
   background-color: var(--color-hover-purple);
   transition: all 0.15s ease-in-out;
 }
+
+@media screen and (min-width: 700px) {
+  .submitButton {
+    font-size: var(--font-size-body2);
+    padding: 1rem 1.2rem;
+  }
+}

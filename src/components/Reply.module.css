@@ -21,11 +21,6 @@
   margin-bottom: 1.5rem;
 }
 
-.repliesContainer {
-  padding-left: var(--base-padding);
-  border-left: 1px var(--color-border) solid;
-}
-
 .replyingTo {
   font-weight: 700;
   color: var(--color-primary-purple);
@@ -50,4 +45,14 @@
 .submitButton:hover {
   background-color: var(--color-hover-purple);
   transition: all 0.15s ease-in-out;
+}
+
+@media screen and (min-width: 700px) {
+  .repliesContainer {
+    border-left: none;
+  }
+
+  .content {
+    margin-left: 3.5rem;
+  }
 }

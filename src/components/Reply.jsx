@@ -24,6 +24,8 @@ export default function Reply({ reply, feedbackId, commentId, onAddReply }) {
     return;
   };
 
+  console.log(reply.id);
+
   return (
     <li key={reply.id} className={styles.reply}>
       <div className={styles.header}>

@@ -60,3 +60,42 @@
   font-size: var(--font-size-body3);
   color: var(--color-secondary-dark-grey);
 }
+
+@media screen and (min-width: 700px) {
+  .navbar {
+    margin: 3.5rem 2.5rem 2.5rem;
+    border-radius: var(--base-border-radius);
+  }
+
+  .main {
+    margin: 0rem 1rem 2.5rem;
+  }
+
+  .filterBar {
+    display: none;
+  }
+
+  .allSections {
+    display: flex;
+    gap: 1rem;
+    margin: var(--base-margin);
+  }
+
+  .desc {
+    margin: 0 0 var(--base-margin);
+  }
+
+  .title {
+    font-size: var(--font-size-h2);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .title {
+    font-size: var(--font-size-h1);
+  }
+
+  .p {
+    font-size: var(--font-size-body2);
+  }
+}

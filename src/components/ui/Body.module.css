@@ -6,3 +6,15 @@
   color: var(--color-secondary-dark-grey);
   margin: var(--base-margin);
 }
+
+@media screen and (min-width: 700px) {
+  .body {
+    padding: 2.5rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .body {
+    margin: var(--base-margin) 0;
+  }
+}

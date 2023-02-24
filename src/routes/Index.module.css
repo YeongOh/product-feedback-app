@@ -1,9 +1,14 @@
 .noFeedback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: var(--color-primary-white);
   color: var(--color-secondary-dark-blue);
   border-radius: var(--base-border-radius);
-  padding: var(--base-padding);
   margin: var(--base-margin);
+}
+
+.noFeedbackBody {
   text-align: center;
   font-size: var(--font-size-body3);
   display: flex;
@@ -11,6 +16,7 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
+  padding: 5rem var(--base-padding);
 }
 
 .noFeedbackTitle {
@@ -40,4 +46,29 @@
 .loginButton:hover {
   background-color: var(--color-hover-purple);
   transition: all 0.15s ease-in-out;
+}
+
+@media screen and (min-width: 700px) {
+  .noFeedbackBody {
+    font-size: var(--font-size-body2);
+    width: 70%;
+  }
+
+  .noFeedbackTitle {
+    font-size: var(--font-size-h1);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    display: flex;
+  }
+
+  .noFeedback {
+    margin: 0;
+  }
+
+  .main {
+    min-width: 50rem;
+  }
 }

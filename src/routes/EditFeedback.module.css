@@ -157,3 +157,63 @@
 .deleteButton:hover {
   background-color: var(--color-hover-red);
 }
+
+@media screen and (min-width: 700px) {
+  .nav {
+    margin: 4.5rem 4.5rem;
+  }
+
+  .main {
+    margin: 3.5rem 2.5rem 0;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .submitButton {
+    margin: 0;
+  }
+
+  .deleteButton {
+    margin: 0;
+  }
+
+  .right {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 1rem;
+  }
+
+  .h1 {
+    font-size: var(--font-size-h1);
+    margin-bottom: 2.5rem;
+  }
+
+  .dropdownButton {
+    font-size: var(--font-size-body2);
+  }
+
+  .deleteButton,
+  .cancelButton,
+  .submitButton {
+    font-size: var(--font-size-body2);
+    padding: 1rem 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .nav {
+    margin: 4.5rem 2.5rem;
+  }
+}

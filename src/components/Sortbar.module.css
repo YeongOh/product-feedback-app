@@ -7,11 +7,21 @@
   align-items: center;
   font-size: var(--font-size-body3);
   height: 3.5rem;
-  position: relative;
 }
 
-.sortOptionButton {
+.leftContainer {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.totalFeedback {
+  display: none;
+}
+
+.sortOption {
   cursor: pointer;
+  position: relative;
 }
 
 .arrowDown {
@@ -19,7 +29,7 @@
     hue-rotate(263deg) brightness(112%) contrast(105%);
 }
 
-.sortOption {
+.sortOptionSpan {
   font-weight: 700;
   margin-right: 0.2rem;
 }
@@ -43,4 +53,60 @@
   border-radius: var(--base-border-radius);
   padding: 0.8rem 1rem;
   font-weight: 700;
+}
+
+.logoutButton {
+  background-color: var(--color-primary-white);
+  color: var(--color-primary-dark-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border-radius: var(--base-border-radius);
+  padding: 0.8rem 1rem;
+  font-weight: 700;
+  font-size: var(--font-size-body3);
+}
+
+.logoutButton:hover {
+  background-color: var(--color-hover-blue);
+  color: var(--color-primary-white);
+  transition: all 0.15s ease-in-out;
+}
+
+@media screen and (min-width: 700px) {
+  .sortContainer {
+    border-radius: var(--base-border-radius);
+    margin: var(--base-margin);
+    min-height: 4.5rem;
+  }
+
+  .totalFeedback {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: var(--font-size-h3);
+    font-weight: 700;
+  }
+
+  .sortOption {
+    font-size: var(--font-size-body2);
+  }
+
+  .dropdownMenu {
+    min-width: 16rem;
+  }
+
+  .buttonWrapper {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .sortContainer {
+    border-radius: var(--base-border-radius);
+    margin: var(--base-margin) 0;
+    min-height: 4.5rem;
+  }
 }

@@ -116,3 +116,51 @@
 .cancelButton:hover {
   background-color: var(--color-hover-dark-blue);
 }
+
+@media screen and (min-width: 700px) {
+  .nav {
+    margin: 4.5rem 4.5rem;
+  }
+
+  .main {
+    margin: 3.5rem 2.5rem 0;
+  }
+
+  .footer {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    margin-top: 1.5rem;
+    gap: 1rem;
+  }
+
+  .submitButton {
+    margin: 0;
+  }
+
+  .h1 {
+    font-size: var(--font-size-h1);
+    margin-bottom: 2rem;
+  }
+
+  .dropdownButton {
+    font-size: var(--font-size-body2);
+  }
+
+  .cancelButton,
+  .submitButton {
+    font-size: var(--font-size-body2);
+    padding: 1rem 1.2rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .wrapper {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  .nav {
+    margin: 4.5rem 2.5rem;
+  }
+}

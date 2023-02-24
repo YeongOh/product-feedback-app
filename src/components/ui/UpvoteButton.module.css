@@ -14,16 +14,30 @@
 
 .button:hover {
   background-color: var(--color-category-hover);
-  transition: all 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
 }
 
 .button.liked {
   background-color: var(--color-primary-blue);
   color: var(--color-primary-white);
-  transition: all 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out;
 }
 
 .arrowUp.liked {
   filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(7477%)
     hue-rotate(263deg) brightness(112%) contrast(105%);
+}
+
+@media screen and (min-width: 700px) {
+  .button {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6rem 0.5rem;
+  }
+
+  .button.roadmap {
+    flex-direction: row;
+    padding: 0.5rem 1rem;
+  }
 }

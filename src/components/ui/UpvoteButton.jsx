@@ -8,14 +8,17 @@ export default function UpvoteButton({
   feedbackId,
   likedUsers,
   upvotes: upvotesProp,
+  isInRoadmap,
 }) {
-  const { uid } = useAuthContext();
+  const { currentUser, uid } = useAuthContext();
   const [isLiked, setIsLiked] = useState(likedUsers && likedUsers[uid]);
   const [upvotes, setUpvotes] = useState(upvotesProp);
 
   const likedClassName = isLiked ? styles.liked : '';
 
   const handleClick = async () => {
+    if (!currentUser) return;
+
     if (!isLiked) {
       const response = await likeFeedback(feedbackId, uid, upvotes);
       setIsLiked(response);
@@ -29,7 +32,9 @@ export default function UpvoteButton({
 
   return (
     <button
-      className={`${styles.button} ${likedClassName}`}
+      className={`${styles.button} ${likedClassName} ${
+        isInRoadmap && styles.roadmap
+      }`}
       type='button'
       onClick={handleClick}
     >

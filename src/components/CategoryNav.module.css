@@ -1,4 +1,14 @@
-.button {
+.categoryContainer {
+  background-color: var(--color-primary-white);
+  border-radius: var(--base-border-radius);
+  padding: var(--base-padding);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1.5rem 0;
+}
+
+.category {
   background-color: var(--color-secondary-grey);
   color: var(--color-primary-blue);
   font-size: var(--font-size-body3);
@@ -7,21 +17,22 @@
   border: transparent;
   border-radius: var(--base-border-radius);
   margin-bottom: 0.4rem;
-  text-transform: capitalize;
-  display: inline;
 }
 
-.button:hover:not(.disable) {
+.category:hover {
   background-color: var(--color-category-hover);
   transition: all 0.25s ease-in-out;
 }
 
-.button.selected {
+.category:focus {
   background-color: var(--color-primary-blue);
   color: var(--color-primary-white);
   transition: all 0.25s ease-in-out;
 }
 
-.button.disable {
-  cursor: auto;
+@media screen and (min-width: 700px) {
+  .categoryContainer {
+    margin: 0;
+    min-height: 12.5rem;
+  }
 }

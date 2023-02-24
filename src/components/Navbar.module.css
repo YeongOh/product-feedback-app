@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 4.5rem;
+  min-height: 4.5rem;
   background: url('../assets/images/mobile/background-header.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -56,80 +56,6 @@
   transition: all 0.5s ease;
 }
 
-.categoryContainer {
-  background-color: var(--color-primary-white);
-  border-radius: var(--base-border-radius);
-  padding: var(--base-padding);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 1.5rem 0;
-}
-
-.category {
-  background-color: var(--color-secondary-grey);
-  color: var(--color-primary-blue);
-  font-size: var(--font-size-body3);
-  font-weight: 600;
-  padding: 0.5rem 1rem;
-  border: transparent;
-  border-radius: var(--base-border-radius);
-  margin-bottom: 0.4rem;
-}
-
-.category:hover {
-  background-color: var(--color-category-hover);
-  transition: all 0.25s ease-in-out;
-}
-
-.category:focus {
-  background-color: var(--color-primary-blue);
-  color: var(--color-primary-white);
-  transition: all 0.25s ease-in-out;
-}
-
-.roadmapContainer {
-  background-color: var(--color-primary-white);
-  border-radius: var(--base-border-radius);
-  padding: var(--base-padding);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin-bottom: 1.5rem;
-}
-
-.roadmapTitleSection {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.roadmapTitle {
-  font-size: var(--font-size-h3);
-  color: var(--color-secondary-dark-blue);
-  font-weight: 700;
-}
-
-.roadmapLink {
-  font-size: var(--font-size-body3);
-  color: var(--color-primary-blue);
-  font-weight: 600;
-  text-decoration: underline;
-}
-
-.roadmapList {
-  color: var(--color-secondary-dark-grey);
-  width: 100%;
-}
-
-.roadmapList li {
-  display: flex;
-  justify-content: space-between;
-  font-weight: 700;
-}
-
 .logoutButton {
   background-color: var(--color-tertiary-red);
   color: var(--color-secondary-grey);
@@ -146,4 +72,65 @@
 .logoutButton:hover {
   background-color: var(--color-hover-red);
   transition: all 0.15s ease-in-out;
+}
+
+.nonMobile {
+  display: none;
+}
+
+@media screen and (min-width: 700px) {
+  .sidebarMenu,
+  .menuButton,
+  .sidebarOverlay {
+    display: none;
+  }
+
+  .title {
+    font-size: var(--font-size-h2);
+  }
+
+  .location {
+    font-size: var(--font-size-body2);
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: var(--base-margin);
+    gap: 1rem;
+  }
+
+  .banner {
+    border-radius: var(--base-border-radius);
+    align-items: flex-end;
+    width: 33.3%;
+    min-height: 12.5rem;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  }
+
+  .nonMobile {
+    display: block;
+    width: 33.3%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    max-width: 16rem;
+  }
+
+  .banner {
+    border-radius: var(--base-border-radius);
+    align-items: flex-end;
+    width: 100%;
+  }
+
+  .nonMobile {
+    display: block;
+    width: 100%;
+  }
 }
