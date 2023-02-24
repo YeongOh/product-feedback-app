@@ -102,6 +102,7 @@
   }
 
   .banner {
+    background: url('../assets/images/tablet/background-header.png');
     border-radius: var(--base-border-radius);
     align-items: flex-end;
     width: 33.3%;
@@ -120,17 +121,25 @@
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
+    gap: 1.5rem;
     max-width: 16rem;
   }
 
   .banner {
+    background: url('../assets/images/desktop/background-header.png');
     border-radius: var(--base-border-radius);
     align-items: flex-end;
     width: 100%;
+    min-height: 8.5rem;
+    filter: none;
   }
 
   .nonMobile {
     display: block;
     width: 100%;
+  }
+
+  .link {
+    margin-bottom: 0.5rem;
   }
 }
