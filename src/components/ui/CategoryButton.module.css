@@ -11,7 +11,7 @@
   display: inline;
 }
 
-.button:hover:not(.disable) {
+.button:hover:not(.disable, .selected) {
   background-color: var(--color-category-hover);
   transition: all 0.25s ease-in-out;
 }
