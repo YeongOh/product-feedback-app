@@ -17,7 +17,7 @@ export default function UpvoteButton({
   const likedClassName = isLiked ? styles.liked : '';
 
   const handleClick = async () => {
-    if (!currentUser) return;
+    if (!currentUser) return alert('Please login to like a feedback!');
 
     if (!isLiked) {
       const response = await likeFeedback(feedbackId, uid, upvotes);
